@@ -3,10 +3,9 @@
 Courses offered by student
 
 Modules Imported:
-uuid4(method) - generate unique ids
 
 """
-from uuid import uuid4
+
 
 
 class Courses:
