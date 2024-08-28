@@ -20,16 +20,13 @@ class Students():
     username: login username
     password(str): login password
 
-OOA
     Attributes:
     student_id(int): unique student id
     name(str): student's name
     username(str): login username
     p_hash(str): hash value of password
-    creaated_at(timestamp): timestamp student user was created
+    created_at(timestamp): timestamp when student user was created
     """
-
-
 
     def __init__(self, name=None, username, password):
         """
@@ -38,10 +35,10 @@ OOA
         student_id = uuid4()
         name = name
 
-        if username == None:
+        if not username:  # username is None
             raise ValueError('Pls enter a valid username')
         else if username:  # == any username already in storage
-            pass  # edit when storage_db is added
+            pass  # when storage_db is added, print("username already exists")
 
         __salt = bcrypt.gensalt()
         p_hash = bcrypt.hashpw(password.encode('utf-8'), __salt)
