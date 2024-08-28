@@ -27,7 +27,7 @@ class Courses:
     def __init__(self, course_code, course_title=None, description=None):
         """Course object initializer"""
         if isinstance(course_code, int):
-            self.course_code = self.course_code
+            self.course_code = course_code
         else:
             raise TypeError('Invalid course code')
 
