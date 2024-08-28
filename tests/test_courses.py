@@ -25,4 +25,4 @@ class TestCourses(unittest.TestCase):
             bch_220 = Courses('220')
 
         self.assertIsNone(bch_220.course_title)
-        self.assertIsNone(bch_220, description)
+        self.assertIsNone(bch_220.description)
