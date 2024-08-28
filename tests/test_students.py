@@ -30,3 +30,4 @@ class TestStudents(unittest.TestCase):
 
         self.assertEqual(student.name, 'John')
         self.assertEqual(student.username, 'johnny')
+        self.assertNotEqual(student.p_hash, 'johnny1234')
