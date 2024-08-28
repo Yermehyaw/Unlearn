@@ -28,14 +28,17 @@ class Students():
     created_at(timestamp): timestamp when student user was created
     """
     def __init__(self, username, password, name=None):
-        """
-        Class initializer
-        """
+        """Class initializer"""
         self.student_id = uuid4()
-        if not isinstance(name, str) or not isinstance(username, str):
+
+        if not isinstance(name, str):
             raise TypeError('Enter a valid name')
         else:
             self.name = name
+
+        if not isinstance(username, str):
+            raise TypeError('Enter a valid username')
+        else:
             self.username = username
 
         if username:  # == any username already in storage
