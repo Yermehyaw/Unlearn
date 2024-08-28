@@ -9,7 +9,7 @@ unittest: create unittests for python scripts
 """
 import pycodestyle
 import unittest
-from Unlearn.models.students import Students
+from models.students import Students
 
 
 class TestStudents(unittest.TestCase):
