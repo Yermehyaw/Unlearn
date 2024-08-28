@@ -27,7 +27,7 @@ class Students():
     p_hash(str): hash value of password
     created_at(timestamp): timestamp when student user was created
     """
-    def __init__(self, name=None, username, password):
+    def __init__(self, username, password, name=None):
         """
         Class initializer
         """
