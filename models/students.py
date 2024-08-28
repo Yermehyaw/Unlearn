@@ -8,7 +8,7 @@ uuid4(method) - Generates a random UUID
 """
 import bcrypt
 from datetime import datetime
-from uuid import uuid4  # funtion
+from uuid import uuid4
 
 
 class Students():
@@ -27,20 +27,21 @@ class Students():
     p_hash(str): hash value of password
     created_at(timestamp): timestamp when student user was created
     """
-
     def __init__(self, name=None, username, password):
         """
         Class initializer
         """
-        student_id = uuid4()
-        name = name
+        self.student_id = uuid4()
+        if not isinstance(name, str) or not isinstance(username, str):
+            raise TypeError('Enter a valid name')
+        else:
+            self.name = name
+            self.username = username
 
-        if not username:  # username is None
-            raise ValueError('Pls enter a valid username')
-        else if username:  # == any username already in storage
+        if username:  # == any username already in storage
             pass  # when storage_db is added, print("username already exists")
 
         __salt = bcrypt.gensalt()
-        p_hash = bcrypt.hashpw(password.encode('utf-8'), __salt)
+        self.p_hash = bcrypt.hashpw(password.encode('utf-8'), __salt)
 
-        created_at = datetime.now()
+        self.created_at = datetime.now()
