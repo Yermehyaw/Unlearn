@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """
-Studrnt class from which defines all student users
+Student class from which defines all student users
 
 Modules Imported:
 bcrypt(func) - encrypt a password string
 uuid4(method) - Generates a random UUID
 """
 import bcrypt
+from datetime import datetime
 from uuid import uuid4  # funtion
 
 
@@ -19,7 +20,7 @@ class Students():
     username: login username
     password(str): login password
 
-
+OOA
     Attributes:
     student_id(int): unique student id
     name(str): student's name
@@ -43,4 +44,6 @@ class Students():
             pass  # edit when storage_db is added
 
         __salt = bcrypt.gensalt()
-        p_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
+        p_hash = bcrypt.hashpw(password.encode('utf-8'), __salt)
+
+        created_at = datetime.now()
