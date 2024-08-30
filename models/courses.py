@@ -14,17 +14,17 @@ class Courses:
     Args:
     course_code(int): unique course code
     course_title(str): name/title of course
-    description(str): course details
+    course_desc(str): course details
 
     Attributes:
     course_code(int): unique course code
     course_title(str): name/title of course
-    description(str): course details/description
+    course_desc(str): course details/description
 
     """
     no_topics = 0
 
-    def __init__(self, course_code, course_title=None, description=None):
+    def __init__(self, course_code, course_title=None, course_desc=None):
         """Course object initializer"""
         Courses.no_topics += 1
 
@@ -34,7 +34,7 @@ class Courses:
             self.course_code = course_code
 
         self.course_title = course_title
-        self.description = description
+        self.course_desc = course_desc
 
     @classmethod
     def get_topics_no(cls):
