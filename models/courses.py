@@ -28,10 +28,10 @@ class Courses:
         """Course object initializer"""
         Courses.no_topics += 1
 
-        if isinstance(course_code, int):
-            self.course_code = course_code
-        else:
+        if not isinstance(course_code, int):
             raise TypeError('Invalid course code')
+        else:
+            self.course_code = course_code
 
         self.course_title = course_title
         self.description = description
