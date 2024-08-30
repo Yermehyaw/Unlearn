@@ -23,8 +23,12 @@ class Courses:
     description(str): course details/description
 
     """
+    no_topics = 0
+
     def __init__(self, course_code, course_title=None, description=None):
         """Course object initializer"""
+        Courses.no_topics += 1
+
         if isinstance(course_code, int):
             self.course_code = course_code
         else:
@@ -32,3 +36,8 @@ class Courses:
 
         self.course_title = course_title
         self.description = description
+
+    @classmethod
+    def get_topics_no(cls):
+        """Returns the no of topics in each course"""
+        return cls.no_topics
