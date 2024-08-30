@@ -7,7 +7,6 @@ Modules Imported:
 """
 
 
-
 class Courses:
     """
     Create a course object representing a course offered by students
