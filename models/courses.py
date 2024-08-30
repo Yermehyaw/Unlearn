@@ -33,8 +33,15 @@ class Courses:
         else:
             self.course_code = course_code
 
-        self.course_title = course_title
-        self.course_desc = course_desc
+        if not isinstance(course_title, str):
+            raise TypeError('Invalid course title')
+        else:
+            self.course_title = course_title
+
+        if not isinstance(course_desc, str):
+            raise TypeError('Invalid course desc')
+        else:
+            self.course_desc = course_desc
 
     @classmethod
     def get_topics_no(cls):
