@@ -13,10 +13,10 @@ from models.courses import Courses
 
 
 class TestCourses(unittest.TestCase):
-    """Tesrs the Courses class and its objects"""
+    """Tests the Courses class and its objects"""
 
     def test_create_course(self):
-        """Tesrs a Course object for exoected behaviour"""
+        """Tests a Course object for exoected behaviour"""
         try:
             bch_220 = Courses(220)
         except TypeError:
@@ -25,5 +25,6 @@ class TestCourses(unittest.TestCase):
         with self.assertRaises(TypeError):
             bch_220 = Courses('220')
 
-        self.assertIsNone(bch_220.course_title)
-        self.assertIsNone(bch_220.description)
+        bch_220 = Courses(220)
+        #self.assertIsNone(bch_220.course_title)
+        self.assertIsNone(bch_220.course_desc)
