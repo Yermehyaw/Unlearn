@@ -73,7 +73,7 @@ class Topics(Courses):
         _dict(dict): dictionary of Lessons obj details to be added to lessons
         """
         if not isinstance(_dict, dict):
-            raise ValueError('Lesson details must be passed as a dict')
+            raise TypeError('Lesson details must be passed as a dict')
         else:
             self._lessons.append(_dict)
 
