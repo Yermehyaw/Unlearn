@@ -11,6 +11,7 @@ import pycodestyle
 import unittest
 from models.courses import Courses
 
+
 class TestCourses(unittest.TestCase):
     """Tesrs the Courses class and its objects"""
 
