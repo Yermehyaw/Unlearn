@@ -8,7 +8,7 @@ Courses(class) - create a course object
 
 """
 from uuid import uuid4
-from courses import Courses
+from .courses import Courses
 
 
 class Topics(Courses):
