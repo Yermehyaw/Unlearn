@@ -46,7 +46,7 @@ class Topics(Courses):
 
         self.topic_id = uuid4()
 
-        self.lessons = {}  # add to storageDB
+        self.lessons = [] # add to storageDB
 
         if not isinstance(topic_title, str):
             raise TypeError('Invalid topic title')
@@ -60,9 +60,17 @@ class Topics(Courses):
                 self.topic_desc = topic_desc
 
     def add_lesson(self, lesson_title, lesson_content, lesson_desc-None):
-        """Adds a new Lessons object to a Topics object"""
+        """
+        Adds a new Lessons object to a Topics object
+        Crucial in storageDB
+        """
         lesson = Lessons(lesson_title, lesson_content, lesson_desc)
-        self.lessons['lesson_id'] = lesson.lesson_id
-        self.lessons['lesson_title'] = lesson.lesson_title
-        self.lessons['lesson_content'] = lesson.lesson_content
-        self.lessons['lesson_desc'] = lesson.lesson_desc
+        lesson_details = {}
+
+        lesson_details['lesson_obj'] = lesson  # may not be necessary
+        lesson_details['lesson_id'] = lesson.lesson_id
+        lesson_details['lesson_title'] = lesson.lesson_title
+        lesson_details['lesson_content'] = lesson.lesson_content
+        lesson_details['lesson_desc'] = lesson.lesson_desc
+
+        self.lessons.append(lesson_details)
