@@ -46,7 +46,7 @@ class Topics(Courses):
 
         self.topic_id = uuid4()
 
-        self.lessons = [] # add to storageDB
+        self.lessons = []  # add to storageDB
 
         if not isinstance(topic_title, str):
             raise TypeError('Invalid topic title')
