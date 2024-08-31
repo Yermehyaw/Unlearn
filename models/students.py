@@ -31,10 +31,11 @@ class Students():
         """Class initializer"""
         self.student_id = uuid4()
 
-        if not isinstance(name, str):
-            raise TypeError('Enter a valid name')
-        else:
-            self.name = name
+        if name:
+            if not isinstance(name, str):
+                raise TypeError('Enter a valid name')
+            else:
+                self.name = name
 
         if not isinstance(username, str):
             raise TypeError('Enter a valid username')

@@ -53,10 +53,11 @@ class Topics(Courses):
         else:
             self.topic_title = topic_title
 
-        if not isinstance(topic_desc, str):
-            raise TypeError('Invalid topic desc')
-        else:
-            self.topic_desc = topic_desc
+        if topic_desc:
+            if not isinstance(topic_desc, str):
+                raise TypeError('Invalid topic desc')
+            else:
+                self.topic_desc = topic_desc
 
     def add_lesson(self, lesson_title, lesson_content, lesson_desc-None):
         """Adds a new Lessons object to a Topics object"""
