@@ -46,7 +46,7 @@ class Topics(Courses):
 
         self.topic_id = uuid4()
 
-        self.lessons = []  # add to storageDB
+        self._lessons = []  # add to storageDB
 
         if not isinstance(topic_title, str):
             raise TypeError('Invalid topic title')
@@ -59,7 +59,25 @@ class Topics(Courses):
             else:
                 self.topic_desc = topic_desc
 
-    def add_lesson(self, lesson_title, lesson_content, lesson_desc-None):
+    @property
+    def lessons(self):
+        """Property getter of lessons attr"""
+        return self._lessons
+
+    @lessons.setter
+    def lessons(self, _dict):
+        """
+        Property setter of lessons attr
+
+        Args:
+        _dict(dict): dictionary of Lessons obj details to be added to lessons
+        """
+        if not isinstance(_dict, dict):
+            raise ValueError('Lesson details must be passed as a dict')
+        else:
+            self._lessons.append(_dict)
+
+    def add_lesson(self, lesson_title, lesson_content, lesson_desc=None):
         """
         Adds a new Lessons object to a Topics object
         Crucial in storageDB
@@ -73,4 +91,4 @@ class Topics(Courses):
         lesson_details['lesson_content'] = lesson.lesson_content
         lesson_details['lesson_desc'] = lesson.lesson_desc
 
-        self.lessons.append(lesson_details)
+        lessons = lesson_details
