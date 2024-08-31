@@ -7,7 +7,7 @@ unittest: create unittests for python scripts
 Lessons(class) - create a new lesson
 Topics(class) - create a new topic
 """
-from models.lessons inport Lessons
+from models.lessons import Lessons
 from models.topics import Topics
 import unittest
 
@@ -53,10 +53,11 @@ class TestTopics(unittest.TestCase):
             'helping students learn carbohydrates'
         )
 
-        for key, value in obj_topic.lessons():
-            if key != 'lesson_id':
-                self.assertEqual(value, obj_lesson.key)
-        self.assertNotEqual(
-            obj_topic.lessons['lesson_id'],
-            obj_lesson.lesson_id
-        )
+        for lesson_dict in obj_topic.lessons:
+            for key, value in lesson_dict():
+                if key != 'lesson_id':
+                    self.assertEqual(value, obj_lesson.key)
+                    self.assertNotEqual(
+                        obj_topic.lessons['lesson_id'],
+                        obj_lesson.lesson_id
+                    )
