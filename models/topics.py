@@ -5,10 +5,12 @@ Topics under each course taken by student
 Modules Imported:
 uuid4(method) - generate unique ids
 Courses(class) - create a course object
+Lessons(class) - create a lesson object
 
 """
 from uuid import uuid4
 from .courses import Courses
+from .lessons import Lessons
 
 
 class Topics(Courses):
@@ -24,6 +26,7 @@ class Topics(Courses):
 
     Attributes:
     topic_id(int): unique id of a topic
+    lessons(list): list of all lessons the topic comprises
     course_code(int): unique course code
     topic_title(str): title of the topic
     course_title(str): name/title of course
@@ -43,6 +46,8 @@ class Topics(Courses):
 
         self.topic_id = uuid4()
 
+        self.lessons = []  # add to storageDB
+
         if not isinstance(topic_title, str):
             raise TypeError('Invalid topic title')
         else:
@@ -52,3 +57,8 @@ class Topics(Courses):
             raise TypeError('Invalid topic desc')
         else:
             self.topic_desc = topic_desc
+
+    def add_lesson(self, lesson_title, lesson_content, lesson_desc-None):
+        """Adds a new Lessons object to a Topics object"""
+        lesson = Lessons(lesson_title, lesson_content, lesson_desc)
+        self.lessons.append(lesson)
