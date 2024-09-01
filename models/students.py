@@ -31,6 +31,7 @@ class Students():
         """Class initializer"""
         self.student_id = uuid4()
 
+        self.name = name
         if name:
             if not isinstance(name, str):
                 raise TypeError('Enter a valid name')
