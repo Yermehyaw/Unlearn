@@ -39,6 +39,7 @@ class Lessons:
         else:
             self.lesson_content = lesson_content
 
+        self.lesson_desc = lesson_desc
         if lesson_desc:
             if not isinstance(lesson_desc, str):
                 raise TypeError('Invalid lesson description')
