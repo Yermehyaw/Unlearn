@@ -9,8 +9,12 @@ Lessons(class) - create a lesson object
 
 """
 from uuid import uuid4
-from .courses import Courses
-from .lessons import Lessons
+if __name__ == '__main__':
+    from courses import Courses
+    from lessons import Lessons
+else:
+    from .courses import Courses
+    from .lessons import Lessons
 
 
 class Topics(Courses):
