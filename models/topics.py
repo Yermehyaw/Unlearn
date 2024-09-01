@@ -53,6 +53,7 @@ class Topics(Courses):
         else:
             self.topic_title = topic_title
 
+        self.topic_desc = topic_desc
         if topic_desc:
             if not isinstance(topic_desc, str):
                 raise TypeError('Invalid topic desc')
