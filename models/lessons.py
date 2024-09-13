@@ -8,7 +8,10 @@ Questions(class) - question bank
 
 """
 from uuid import uuid4
-import questions
+if __name__ == '__main__':
+    from questions import Questions
+else:
+    from .questions import Questions
 
 
 class Lessons:
@@ -88,7 +91,7 @@ class Lessons:
             None
 
             """
-            # question = questions.Questions()
+            # question = Questions( , )
 
             # more code
 
