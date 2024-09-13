@@ -22,8 +22,6 @@ class Questions:
     tip(str): a tip to aid user
     useful_in_topic(list): list of topic_ids where question can be used
     useful_in_topic_name(list): list of topic_name where question may be used
-    useful_in_lesson_id(list): ditto
-    useful_in_lesson_name(list): ditto
 
     """
     def __init__(
@@ -44,13 +42,35 @@ class Questions:
         else:
             self.tip = tip
 
-        self.useful_in_lesson_id = []
-        self.useful_in_lesson_name = []
-        self.useful_in_topic_id = []
-        self.useful_in_topic_name = []
+        self._useful_in_topic_id = []
+        self._useful_in_topic_name = []
 
     @property
-    def get_questions(self):
+    def useful_in(self, get_ids=True):
         """
+        Get the list of topic ids or nanes in which the question can be used in
+        """
+        if get_ids:
+            return self._useful_in_topic_id
+        else:
+            return self._useful_in_topic_name
 
-    def add_question()
+    @useful_in.setter
+    def useful_in(self, topic_id, topic_name):
+        """
+        Add an topic_id to tge list of topic_ids where this ques
+        tion object may be used
+
+        Args:
+        topic_id(uuid): id of topic to be added
+        topic_name(str): nane of topic to be added
+        """
+        if topic_id not in self._useful_in_topic_id:
+            self._useful_in_topic_id.append(topic_id)
+
+        if topic_name not in self._useful_in_topic_name:
+            self._useful_in_topic_name.append(topic_name)
+
+    def save(self):
+        """Save object to storage"""
+            # Coming soon. . .
