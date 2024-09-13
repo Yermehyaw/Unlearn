@@ -4,6 +4,7 @@ Question bank for the unlearn app
 
 Modules Imported:
 uuid4(method) - generate unique ids
+UUID(cls) - base class for all uuid
 
 """
 from uuid import uuid4
@@ -51,21 +52,32 @@ class Questions:
         else:
             return self._useful_in_topic_name
 
-    @useful_in.setter
-    def useful_in(self, topic_id, topic_name):
+    def add_useful_in_topic(self, topic_id, topic_name):
         """
-        Add an topic_id to tge list of topic_ids where this ques
+        Add an topic_id to the list of topic_ids where this ques
         tion object may be used
 
         Args:
         topic_id(uuid): id of topic to be added
         topic_name(str): nane of topic to be added
+
         """
+        if not isinstance(topic_name, str):
+            raise TypeError('Invalid topic name')
+
+        self.reload()
+
         if topic_id not in self._useful_in_topic_id:
             self._useful_in_topic_id.append(topic_id)
 
         if topic_name not in self._useful_in_topic_name:
             self._useful_in_topic_name.append(topic_name)
+
+    def reload(self):
+        """Reload question obj attributes from storage"""
+        # reload _useful_in_topoc_nanrle
+        # reload _useful_in_topic_id
+        pass  #:remove when method is defined
 
     def save(self):
         """Save object to storage"""
