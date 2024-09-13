@@ -88,6 +88,9 @@ class Lessons:
             None
 
             """
-            questions = Questions.get_questions() ###
+            questions = Questions.get_questions('id_of_a_topic') ###
 
-            return
+            # more code
+            
+            session = ##
+            return session
