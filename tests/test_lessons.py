@@ -33,3 +33,15 @@ class TestLessons(unittest.TestCase):
             'this is how to easily learn carbohydrates'
         )
         self.assertIsNotNone(new_lesson.lesson_id)
+
+
+    def test_create_quiz(self):
+        """Test creation of a quiz obj"""
+        with self.assertRaises(AttributeError, TypeError):
+            quiz = new_lesson.Quiz(1, 't/f')
+
+        quiz = new_lesson.Quiz('enzyme_concepts', 'mcq')
+
+        self.assertEqual(qiiz.score, 0)
+
+        self.assertEqual(quiz.quiz_name, 'enzyme_concepts')
