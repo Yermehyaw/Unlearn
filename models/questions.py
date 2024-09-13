@@ -32,10 +32,11 @@ class Questions:
 
         self.question_id = uuid4()
 
-        if not isinstance(tip, str):
-            raise TypeError('Invalid tip')
-        else:
-            self.tip = tip
+        if tip:
+            if not isinstance(tip, str):
+                raise TypeError('Invalid tip')
+            else:
+                self.tip = tip
 
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
