@@ -48,3 +48,9 @@ class Questions:
         self.useful_in_lesson_name = []
         self.useful_in_topic_id = []
         self.useful_in_topic_name = []
+
+    @property
+    def get_questions(self):
+        """
+
+    def add_question()
