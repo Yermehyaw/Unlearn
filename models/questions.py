@@ -25,8 +25,7 @@ class Questions:
 
     """
     def __init__(
-            self,
-            question_id,
+            self
             question_str,
             tip=None,
     ):
