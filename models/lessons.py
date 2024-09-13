@@ -8,7 +8,7 @@ Questions(class) - question bank
 
 """
 from uuid import uuid4
-from questions import Questions
+from .questions import Questions
 
 
 class Lessons:
