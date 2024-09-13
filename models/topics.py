@@ -104,3 +104,5 @@ class Topics(Courses):
         lesson_details['lesson_desc'] = lesson.lesson_desc
 
         lessons = lesson_details
+
+        # add the created lessons() obj to storage
