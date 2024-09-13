@@ -8,7 +8,7 @@ Questions(class) - question bank
 
 """
 from uuid import uuid4
-from .questions import Questions
+import questions
 
 
 class Lessons:
@@ -88,7 +88,7 @@ class Lessons:
             None
 
             """
-            questions = Questions.get_questions('id_of_a_topic') ###
+            # question = questions.Questions()
 
             # more code
 
