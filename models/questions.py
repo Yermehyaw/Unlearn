@@ -24,11 +24,7 @@ class Questions:
     useful_in_topic_name(list): list of topic_name where question may be used
 
     """
-    def __init__(
-            self
-            question_str,
-            tip=None,
-    ):
+    def __init__(self, question_str, tip=None):
         if not isinstance(question_str, str):
             raise TypeError('Invalid question')
         else:
