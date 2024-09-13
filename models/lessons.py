@@ -91,6 +91,6 @@ class Lessons:
             questions = Questions.get_questions('id_of_a_topic') ###
 
             # more code
-            
-            session = ##
-            return session
+
+            # session = ##
+            # return session
