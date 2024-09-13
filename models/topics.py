@@ -36,6 +36,7 @@ class Topics(Courses):
     course_title(str): name/title of course
     course_desc(str): course details
     topic_desc(str): topic description
+    topic_lecturer(str): name of lecturer taking the topic
 
     """
     def __init__(
@@ -44,7 +45,8 @@ class Topics(Courses):
             topic_title,
             course_title=None,
             course_desc=None,
-            topic_desc=None
+            topic_desc=None,
+            topic_lecturer=None
     ):
         super().__init__(course_code, course_title, course_desc)
 
@@ -63,6 +65,11 @@ class Topics(Courses):
                 raise TypeError('Invalid topic desc')
             else:
                 self.topic_desc = topic_desc
+
+        if not isinstance(topic_lecturer, str):
+            raise TypeError('Invalid lecturer name')
+        else:
+            self.topic_lecturer = topic_lecturer
 
     @property
     def lessons(self):
