@@ -14,7 +14,7 @@ from flasgger import Swagger
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-app.config.from_config(config.Config)  # configs not set yet
+app.config.from_object(config.Config)  # configs not set yet
 swagger = Swagger(app)
 
 # cors activation
