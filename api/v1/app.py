@@ -13,12 +13,14 @@ from flasgger import Swagger
 
 
 app = Flask(__name__)
-app.register_blueprint(app_views)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-
+app.config.from_config(config.Config)  # configs not set yet
 swagger = Swagger(app)
 
 # cors activation
+
+with app.app_context():
+    app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
 @app.teardown_appcontext
