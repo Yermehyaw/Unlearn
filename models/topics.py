@@ -43,10 +43,7 @@ class Topics(Courses):
     
     def __init__(
             self,
-            course_code,
             topic_title,
-            course_title=None,
-            course_desc=None,
             topic_desc=None,
             topic_lecturer=None
     ):
