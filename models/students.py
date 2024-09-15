@@ -21,15 +21,17 @@ class Students():
     password(str): login password
 
     Attributes:
-    student_id(int): unique student id
+    student_id(str): unique student id
     name(str): student's name
     username(str): login username
+    study_year(int): year of study (Not added yet)
     p_hash(str): hash value of password
     created_at(timestamp): timestamp when student user was created
+
     """
     def __init__(self, username, password, name=None):
         """Class initializer"""
-        self.student_id = uuid4()
+        self.student_id = 'student_' + str(uuid4().int)
 
         self.name = name
         if name:

@@ -31,7 +31,7 @@ class Questions:
         else:
             self.question_str = question_str
 
-        self.question_id = uuid4()
+        self.question_id = 'question_' + str(uuid4().int)
 
         if tip:
             if not isinstance(tip, str):
@@ -58,7 +58,7 @@ class Questions:
         tion object may be used
 
         Args:
-        topic_id(uuid): id of topic to be added
+        topic_id(str): id of topic to be added
         topic_name(str): nane of topic to be added
 
         """
