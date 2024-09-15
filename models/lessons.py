@@ -24,7 +24,7 @@ class Lessons:
     lesson_desc(str): lesson details (optional)
 
     Attributes:
-    lesson_id(int): unique lesson id
+    lesson_id(str): unique lesson id
     lesson_title(str): title of the lesson
     lesson_content(str): teaching/mentoring content
     lesson_desc(str): lesson details
@@ -32,7 +32,7 @@ class Lessons:
     """
     def __init__(self, lesson_title, lesson_content, lesson_desc=None):
         """Class object initializer"""
-        self.lesson_id = uuid4()
+        self.lesson_id = 'lesson_' + str(uuid4().int)
 
         if not isinstance(lesson_title, str):
             raise TypeError('Invalid lesson title')
@@ -60,7 +60,7 @@ class Lessons:
         None
 
         Attributes:
-        quiz_id(int): unique id of a quiz
+        quiz_id(str): unique id of a quiz
         quiz_name(str): name of quiz
         quiz_type(str): type of quiz e.g MCQ, T/F
         score(int): score on a quiz session
@@ -68,7 +68,7 @@ class Lessons:
         """
         def __init__(self, quiz_name, quiz_type=None):
             """Class initializer"""
-            self.quiz_id = uuid4()
+            self.quiz_id = 'quiz_' + str(uuid4().int)
 
             # also check if quiz nane already exisrs in the db
             if not isinstance(quiz_name, str):
