@@ -23,10 +23,9 @@ with app.app_context():
     app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
-@app.teardown_appcontext
-def close_app():
-    """Closes storage when app is closed"""
-    pass
+#@app.teardown_appcontext
+#def close_app():
+#    """Closes storage when app is closed"""
 
 
 if __name__ == '__main__':
