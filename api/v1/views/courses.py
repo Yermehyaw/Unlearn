@@ -55,6 +55,3 @@ def spec_courses(course_code):
         return jsonify({'response': 'course created successfully'})
         # else:
         return jsonify({'response': 'course creation failed'})
-
-
-@app_views.route('/courses/<>', strict_slashes=False)
