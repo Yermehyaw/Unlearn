@@ -39,6 +39,8 @@ class Topics(Courses):
     topic_lecturer(str): name of lecturer taking the topic
 
     """
+    no_topics = 0  # save to storage
+    
     def __init__(
             self,
             course_code,
@@ -49,6 +51,8 @@ class Topics(Courses):
             topic_lecturer=None
     ):
         super().__init__(course_code, course_title, course_desc)
+
+        Topics.no_topics += 1
 
         self.topic_id = uuid4()
 

@@ -22,11 +22,11 @@ class Courses:
     course_desc(str): course details/description
 
     """
-    no_topics = 0
+    no_courses = 0
 
     def __init__(self, course_code, course_title=None, course_desc=None):
         """Course object initializer"""
-        Courses.no_topics += 1
+        Courses.no_courses += 1
 
         if not isinstance(course_code, int):
             raise TypeError('Invalid course code')
