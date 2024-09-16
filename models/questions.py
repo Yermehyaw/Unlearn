@@ -44,7 +44,7 @@ class Questions:
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
 
-    @property
+
     def useful_in(self, get_ids=True):
         """
         Get the list of topic ids or nanes in which the question can be used in
