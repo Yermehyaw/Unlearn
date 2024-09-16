@@ -33,7 +33,7 @@ class Questions:
     correct_option(list): option_id and option_text of the corrrect option
 
     """
-    def __init__(self, question_str, option_type, options=None, tip=None):
+    def __init__(self, question_str, option_type, options, tip=None):
         ops = ['A', 'B', 'C', 'D', 'E']
 
         if not isinstance(question_str, str):
@@ -61,7 +61,7 @@ class Questions:
         else:
             self.option_type = option_type
 
-        if options:  # if options arg was entered
+        if len(options) != 0:  # if options arg was entered
             if option_type == 't/f':
                 raise ValueError('options arg not allowed for t/f option_type')
             elif option_type == 'mcq':
@@ -96,27 +96,41 @@ class Questions:
         pretty_question = {'question': self.question_str}
 
         if self.option_type == 'mcq':
-            pretty_option = {
-                'option_type': 'Multiple Choice Question',
-                'options': [
-                    self.option_selection['A'],
-                    self.option_selection['B'],
-                    self.option_selection['C'],
-                    self.option_selection['D'],
-                    self.option_selection['E']
-                ],
-                'correct_option': self.correct_option[1]
-                # index 1 is the option_text
-            }
+            if len(self.option_selection) == 0:
+                pretty_option = {
+                    'option_type': 'Multiple Choice Question',
+                    'options': ['No option added, use edit_question() to add'],
+                    'correct_option': ''
+                }
+            else:
+                pretty_option = {
+                    'option_type': 'Multiple Choice Question',
+                    'options': [
+                        self.option_selection['A'],
+                        self.option_selection['B'],
+                        self.option_selection['C'],
+                        self.option_selection['D'],
+                        self.option_selection['E']
+                    ],
+                    'correct_option': self.correct_option[1]
+                    # index 1 is the option_text
+                }
         elif self.option_type == 't/f':
-            pretty_option = {
-                'option_type': 'True or False Question',
-                'options': [
-                    self.option_selection['True'],
-                    self.option_selection['False']
-                ],
-                'correct_option': self.correct_option[1]
-            }
+            if len(self.option_selection) == 0:
+                pretty_option = {
+                    'option_type': 'True or False Question',
+                    'options': ['No option added, use edit_question() to add'],
+                    'correct_option': ''
+                }
+            else:
+                pretty_option = {
+                    'option_type': 'True or False Question',
+                    'options': [
+                        self.option_selection['True'],
+                        self.option_selection['False']
+                    ],
+                    'correct_option': self.correct_option[1]
+                }
 
         final_pretty_q = pretty_question.update(pretty_option)
         return final_pretty_q
