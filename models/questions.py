@@ -93,7 +93,7 @@ class Questions:
         """Get the question with its options in a user friendly format"""
         self.reload()
 
-        pretty_question = {'question': question_str}
+        pretty_question = {'question': self.question_str}
 
         if self.option_type == 'mcq':
             pretty_option = {
