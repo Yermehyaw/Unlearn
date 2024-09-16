@@ -37,7 +37,7 @@ class Questions:
         ops = ['A', 'B', 'C', 'D', 'E']
 
         if not isinstance(question_str, str):
-            raise TypeError('Invalid question')
+            raise TypeError('Invalid question text')
         else:
             self.question_str = question_str
 
@@ -53,6 +53,9 @@ class Questions:
 
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
+
+        if not isinstance(options, list):
+            raise TypeError('Options must be entered as a list')
 
         if not isinstance(option_type, str):
             raise TypeError('Invalid option type')
