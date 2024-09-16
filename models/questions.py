@@ -162,7 +162,7 @@ class Questions:
             with an option_to_change arg')
 
         if option_type == 'mcq' and change_option_to is None:
-            raise ValueError('An mcq option_type must be passed with
+            raise ValueError('An mcq option_type must be passed with\
             a change_option_to arg')
 
         # Begin changing the question's option
