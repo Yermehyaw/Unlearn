@@ -15,14 +15,22 @@ class Questions:
     Questions class
 
     Args:
-    None
+    question_str(str): question to be asked
+    tip(str): a tip to aid user
+    option_type(str): type of option the question has i.e either mcq or t/f
 
     Attributes:
     question_id(int): unique id of question
     question_str(str): question being asked
     tip(str): a tip to aid user
-    useful_in_topic(list): list of topic_ids where question can be used
-    useful_in_topic_name(list): list of topic_name where question may be used
+    _useful_in_topic(list): list of topic_ids where question can be used
+    _useful_in_topic_name(list): list of topic_name where question may be used
+
+    option_type(str): type of option the question has i.e either t/f or mcq
+    option_selection(dict): selectable options each with an
+    individual option_id and option_text
+    selected_option(list): option_id and option_text of the selected option
+    correct_option(str): option_id and option_text of the corrrect option
 
     """
     def __init__(self, question_str, tip=None):
@@ -44,6 +52,14 @@ class Questions:
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
 
+        if not isinstance(option_type, str):
+            raise TypeError('Invalid option type,  enter "mcq" or "t/f"')
+        else:
+            self.option_type = option_type
+
+        self.option_selection = {}
+
+
 
     def useful_in(self, get_ids=True):
         """
@@ -64,8 +80,8 @@ class Questions:
         topic_name(str): nane of topic to be added
 
         """
-        if not isinstance(topic_name, str):
-            raise TypeError('Invalid topic name')
+        if not isinstance(topic_name, str) or not isinstance(topic_id, str):
+            raise TypeError('Invalid topic credential(s)')
 
         self.reload()
 
@@ -77,10 +93,12 @@ class Questions:
 
     def reload(self):
         """Reload question obj attributes from storage"""
-        # reload _useful_in_topoc_nanrle
+        # reload _useful_in_topic_name
         # reload _useful_in_topic_id
-        pass  #:remove when method is defined
+        pass  # remove when method is defined
 
     def save(self):
         """Save object to storage"""
             # Coming soon. . .
+
+            
