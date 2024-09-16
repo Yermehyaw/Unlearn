@@ -70,7 +70,7 @@ class Questions:
                 else:
                     for option in options:
                         for op in ops:
-                            self.selected_option = {
+                            self.option_selection = {
                                 op: option
                             }
 
