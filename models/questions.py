@@ -38,6 +38,8 @@ class Questions:
                 raise TypeError('Invalid tip')
             else:
                 self.tip = tip
+        else:
+            self.tip = ''
 
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
