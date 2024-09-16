@@ -15,8 +15,9 @@ class Questions:
 
     Args:
     question_str(str): question to be asked
-    tip(str): a tip to aid user
     option_type(str): type of option the question has i.e either mcq or t/f
+    options(list): list of options
+    tip(str): a tip to aid user
 
     Attributes:
     question_id(int): unique id of question
@@ -32,7 +33,9 @@ class Questions:
     correct_option(list): option_id and option_text of the corrrect option
 
     """
-    def __init__(self, question_str, tip=None):
+    def __init__(self, question_str, option_type, options=None, tip=None):
+        ops = ['A', 'B', 'C', 'D', 'E']
+
         if not isinstance(question_str, str):
             raise TypeError('Invalid question')
         else:
@@ -53,12 +56,32 @@ class Questions:
 
         if not isinstance(option_type, str):
             raise TypeError('Invalid option type')
-        elif option_type != 'mcq' or option_type != 't/f':
+        elif option_type != 'mcq' and option_type != 't/f':
             raise TypeError('Invalid option type,  pls enter "mcq" or "t/f"')
         else:
             self.option_type = option_type
 
-        self.option_selection = {}
+        if options:  # if options arg was entered
+            if option_type == 't/f':
+                raise ValueError('options arg not allowed for t/f option_type')
+            elif option_type == 'mcq':
+                if len(options) < 5 or len(options) > 5:
+                    raise ValueError('Pls enter  5 options for mcq option_type')
+                else:
+                    for option in options:
+                        for op in ops:
+                            self.selected_option = {
+                                op: option
+                            }
+
+        else:  # options arg not entered
+            if option_type == 't/f':
+                self.option_selection = {
+                    'True': [True, 'option_' + str(uuid4().int)],
+                    'False': [False, 'option_' + str(uuid4().int)]
+                }
+            elif option_type == 'mcq':
+                self.option_selection = {}
 
         self.selected_option = []
 
@@ -104,11 +127,12 @@ class Questions:
             self,
             question_str,
             option_type,
-            option_to_change,
-            change_option_to,
+            option_to_change=None,
+            change_option_to=None,
     ):
         """
-        Edit the attributes of an already existing questions object
+        Edit the attributes of an already existing questions object.
+        Only one option can be changed at a time
 
         Args:
         question_str(str): new question string
@@ -116,9 +140,9 @@ class Questions:
         type or a diff one
         option_to_change(str): A, B, C, D E. Only applicable if
         option_type is "mcq"
-        change_option_to(str): string to change the selected option into
+        change_option_to(str): replacement text for the selected option
 
-        NOTE: Remember to call sace() after any operation/edit is dobe
+        NOTE: Remember to call save() after any operation/edit is done
         this function does not save changes automatically to storage
         """
         self.reload()
@@ -128,8 +152,22 @@ class Questions:
         else:
             self.question_str = question_str
 
+        if not isinstance(option_type, str):
+            raise TypeError('Invalid option type')
+        elif option_type != 'mcq' and option_type != 't/f':
+            raise ValueError('Invalid option type,  pls enter "mcq" or "t/f"')
+
+        if option_type == 'mcq' and option_to_change is None:
+            raise ValueError('An mcq option_type must be passed\
+            with an option_to_change arg')
+
+        if option_type == 'mcq' and change_option_to is None:
+            raise ValueError('An mcq option_type must be passed with
+            a change_option_to arg')
+
+        # Begin changing the question's option
         if self.option_type == 'mcq' and option_type == 't/f':
-            # if the original option_type was mcq but user wishes to
+            # if the original option_type was mcq in storage but user wishes to
             # change it to 't/f'
             option_true = 'option_' + str(uuid4().int)
             option_false = 'option_' + str(uuid4().int)
@@ -137,22 +175,35 @@ class Questions:
                 'True': [True, option_true],
                 'False': [False, option_false]
             }
-        elif self.option_type == 't/f' and option_type == 'mcq':
-            # if the original option_type was t/f but now being changed
-            # to mcq
+        elif option_type == 'mcq':
+            # Same action will be performed on a t/f or mcq question in storage
             new_option_id = 'option_' + str(uuid4().int)
-
-            if option_to_change == 'A':  # use switch case statement
+            if option_to_change == 'A':
                 self.option_selection = {
                     'A': [change_option_to, new_option_id]
                 }
             elif option_to_change == 'B':
-                # continue from here
-
-        elif self.option_type == 'mcq' and option_type == 'mcq':
-
+                self.option_selection = {
+                    'B': [change_option_to, new_option_id]
+                }
+            elif option_to_change == 'C':
+                self.option_selection = {
+                    'C': [change_option_to, new_option_id]
+                }
+            elif option_to_change == 'D':
+                self.option_selection = {
+                    'D': [change_option_to, new_option_id]
+                }
+            elif option_to_change == 'E':
+                self.option_selection = {
+                    'E': [change_option_to, new_option_id]
+                }
+            else:
+                raise ValueError('Invalid option to change: Enter A - E')
         elif self.option_type == 't/f' and option_type == 't/f':
+            # no changes to be done to the options of a t/f question
                 pass
+
 
     def useful_in(self, get_ids=True):
         """
