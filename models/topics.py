@@ -103,15 +103,7 @@ class Topics():
         Adds a new Lessons object to a Topics object
         Crucial in storageDB
         """
-        lesson = Lessons(lesson_title, lesson_content, lesson_desc)
-        lesson_details = {}
-
-        lesson_details['lesson_obj'] = lesson  # may not be necessary
-        lesson_details['lesson_id'] = lesson.lesson_id
-        lesson_details['lesson_title'] = lesson.lesson_title
-        lesson_details['lesson_content'] = lesson.lesson_content
-        lesson_details['lesson_desc'] = lesson.lesson_desc
-
-        lessons = lesson_details
+        new_lessson = Lessons(lesson_title, lesson_content, lesson_desc)
+a        self.lessons = new_lessson
 
         # add the created Lessons() obj to storage
