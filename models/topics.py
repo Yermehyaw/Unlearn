@@ -22,11 +22,9 @@ class Topics(Courses):
     Create a topic under each course offered by a student
 
     Args:
-    course_code(int): unique course code
     topic_title(str): title of the topic
-    course_title(str): name/title of course (optional)
-    course_desc(str): course details (optional)
     topic_desc(str): topic description (optional)
+    topic_lecturer(str): name of lecturer taking the topic
 
     Attributes:
     topic_id(str): unique id of a topic
