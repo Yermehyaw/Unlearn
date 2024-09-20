@@ -51,19 +51,17 @@ class Courses:
             else:
                 self.course_desc = course_desc
 
-
     @property
     def get_topics_no(self):
         """Returns the no of topics in each course"""
         # retrieve no_topocs from db
-        return cls.no_topics
+        return Courses.no_topics
 
     @property
     def get_all_topics_list(self):
         """Returns a list of all topics in the course"""
         # retrieve from db
-        return self.all_topics
-
+        return Courses.all_topics
 
     def add_topic(self, new_topic_title, new_cs_code=None):
         """Creates a new topic"""
