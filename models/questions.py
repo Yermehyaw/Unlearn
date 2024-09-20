@@ -33,7 +33,7 @@ class Questions:
     correct_option(list): option_id and option_text of the corrrect option
 
     """
-    def __init__(self, question_str, option_type, options, tip=None):
+    def __init__(self, question_str, option_type, options=[], tip=None):
         ops = ['A', 'B', 'C', 'D', 'E']
 
         if not isinstance(question_str, str):
@@ -70,13 +70,12 @@ class Questions:
             elif option_type == 'mcq':
                 if len(options) < 5 or len(options) > 5:
                     raise ValueError('Pls enter  5 options for mcq option_type')
-                else:
+                else:  # arrange pased option list as a dict
                     for option in options:
                         for op in ops:
                             self.option_selection = {
-                                op: option
+                                op: [option, 'option_' + str(uuid4().int)]
                             }
-
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
@@ -139,7 +138,6 @@ class Questions:
         return final_pretty_q
 
 
-    @show_question.setter
     def edit_question(
             self,
             question_str,
