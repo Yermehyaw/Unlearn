@@ -45,23 +45,25 @@ class Topics():
             topic_desc=None,
             topic_lecturer=None
     ):
-        # super().__init__(course_code)
-        # if not isinstance(self.course_code, str):
-
-        # if not isinstance(self.course_title, str):
-
-        # if not isinstance(self.course_desc, str):
-
         Topics.no_topics += 1  # save to db
 
-        self.topic_id = 'topic' + str(uuid4().int)
+        self.topic_id = 'topic_' + str(uuid4().int)
 
         self._lessons = []  # add to storageDB
+
+        if not isinstance(self.course_code, int):
+            raise TypeError('Invalid course code')
+        else:
+            self.course_code = course_code
 
         if not isinstance(topic_title, str):
             raise TypeError('Invalid topic title')
         else:
             self.topic_title = topic_title
+
+        self.course_title = ''
+
+        self.course_desc = ''
 
         self.topic_desc = ''
         if topic_desc:
