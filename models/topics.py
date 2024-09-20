@@ -47,7 +47,7 @@ class Topics(Courses):
     ):
         super().__init__(course_code, course_title, course_desc)
 
-        Topics.no_topics += 1
+        Topics.no_topics += 1  # save to db
 
         self.topic_id = 'topic' + str(uuid4().int)
 
