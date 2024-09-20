@@ -23,8 +23,9 @@ class Topics(Courses):
 
     Args:
     topic_title(str): title of the topic
+    course_code(int): unique course code
     topic_desc(str): topic description (optional)
-    topic_lecturer(str): name of lecturer taking the topic
+    topic_lecturer(str): name of lecturer taking the topic (optional)
 
     Attributes:
     topic_id(str): unique id of a topic
@@ -42,10 +43,11 @@ class Topics(Courses):
     def __init__(
             self,
             topic_title,
+            course_code,
             topic_desc=None,
             topic_lecturer=None
     ):
-        super().__init__(course_code, course_title, course_desc)
+        super().__init__(course_code)
 
         Topics.no_topics += 1  # save to db
 
