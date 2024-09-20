@@ -3,13 +3,12 @@
 Test Students class
 
 Modules/Functs Imported:
-pycodestyle: PEP8 coding linter
 unittest: create unittests for python scripts
 
 """
-import pycodestyle
 import unittest
 from models.courses import Courses
+# from courses import Courses
 
 
 class TestCourses(unittest.TestCase):
@@ -26,5 +25,22 @@ class TestCourses(unittest.TestCase):
             bch_220 = Courses('220')
 
         bch_220 = Courses(220)
-        self.assertIsNone(bch_220.course_title)
-        self.assertIsNone(bch_220.course_desc)
+
+        self.assertEqual(bch_220.course_title, '')
+
+        self.assertEqual(bch_220.course_desc, '')
+
+
+    def test_add_topic(self):
+        """Tests course topic creation"""
+        bch_220 = Courses(220)
+        with self.assertRaises(TypeError):
+            bch_220.add_topic(450)
+
+        no_topics = bch_220.get_topics_no
+        all_topics = bch_220.get_all_topics_list
+
+        bch_220.add_topic('ETC')
+        self.assertEqual(bch_220.get_topics_no, (no_topics + 1))
+        self.assertEqual(bch_220.get_all_topics_list, all_topics)
+        # all_topics.append not used: wierd py behaviour with immutable objs
