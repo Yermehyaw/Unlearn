@@ -51,7 +51,7 @@ class Topics():
 
         self._lessons = []  # add to storageDB
 
-        if not isinstance(self.course_code, int):
+        if not isinstance(course_code, int):
             raise TypeError('Invalid course code')
         else:
             self.course_code = course_code
@@ -86,17 +86,17 @@ class Topics():
         return self._lessons
 
     @lessons.setter
-    def lessons(self, _dict):
+    def lessons(self, new_lessson):
         """
         Property setter of lessons attr
 
         Args:
         _dict(dict): dictionary of Lessons obj details to be added to lessons
         """
-        if not isinstance(_dict, dict):
-            raise TypeError('Lesson details must be passed as a dict')
+        if not isinstance(new_lessson, Lessons):
+            raise TypeError('Invalid lesson name')
         else:
-            self._lessons.append(_dict)
+            self._lessons.append(new_lessson)
 
     def add_lesson(self, lesson_title, lesson_content, lesson_desc=None):
         """
@@ -114,4 +114,4 @@ class Topics():
 
         lessons = lesson_details
 
-        # add the created lessons() obj to storage
+        # add the created Lessons() obj to storage
