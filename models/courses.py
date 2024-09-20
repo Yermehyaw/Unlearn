@@ -6,7 +6,10 @@ Modules Imported:
 Topics: topics under each course
 
 """
-from topics import Topics
+if __name__ == '__main__':
+    from topics import Topics
+else:
+    from .topics import Topics
 
 
 class Courses:
@@ -25,6 +28,7 @@ class Courses:
 
     """
     no_topics = 0
+    all_topics = []
 
     def __init__(self, course_code, course_title=None, course_desc=None):
         """Course object initializer"""
@@ -47,7 +51,7 @@ class Courses:
             else:
                 self.course_desc = course_desc
 
-    @property
+
     @classmethod
     def get_topics_no(cls):
         """Returns the no of topics in each course"""
@@ -55,7 +59,10 @@ class Courses:
         return cls.no_topics
 
 
-    def add_topic(self, new_topic_name, course_code):
+    def add_topic(self, new_topic_title, new_cs_code=None):
         """Creates a new topic"""
-        new_topic = Topics(new_topic_name, self.course_code)
+        new_topic = Topics(new_topic_title, self.course_code)
+
         Courses.no_topics += 1
+
+        Courses.all_topics.append(new_topic.topic_title)
