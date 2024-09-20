@@ -64,16 +64,18 @@ class Topics():
             self.topic_title = topic_title
 
         self.topic_desc = ''
-        if not isinstance(topic_desc, str):
-            raise TypeError('Invalid topic desc')
-        else:
-            self.topic_desc = topic_desc
+        if topic_desc:
+            if not isinstance(topic_desc, str):
+                raise TypeError('Invalid topic desc')
+            else:
+                self.topic_desc = topic_desc
 
         self.topic_lecturer = ''
-        if not isinstance(topic_lecturer, str):
-            raise TypeError('Invalid lecturer name')
-        else:
-            self.topic_lecturer = topic_lecturer
+        if topic_lecturer:
+            if not isinstance(topic_lecturer, str):
+                raise TypeError('Invalid lecturer name')
+            else:
+                self.topic_lecturer = topic_lecturer
 
 
     @property
