@@ -9,10 +9,12 @@ Lessons(class) - create a lesson object
 
 """
 from uuid import uuid4
-if __name__ == '__main__':
-    from lessons import Lessons
+if __name__ == '__main__': # wanton but no need to change
+    from lessons import Lessons  # from models.lessons . . . more preferrable
+    from questions import Questions
 else:
     from .lessons import Lessons
+    from .questions import Questions
 
 
 class Topics():
@@ -34,10 +36,9 @@ class Topics():
     course_desc(str): course details
     topic_desc(str): topic description
     topic_lecturer(str): name of lecturer taking the topic
+    questions(list): list of all question objs on the topic obj
 
     """
-    no_topics = 0  # save to storage
-
     def __init__(
             self,
             topic_title,
@@ -45,8 +46,6 @@ class Topics():
             topic_desc=None,
             topic_lecturer=None
     ):
-        Topics.no_topics += 1  # save to db
-
         self.topic_id = 'topic_' + str(uuid4().int)
 
         self._lessons = []  # add to storageDB
@@ -78,6 +77,8 @@ class Topics():
                 raise TypeError('Invalid lecturer name')
             else:
                 self.topic_lecturer = topic_lecturer
+
+        self.questions = []
 
     @property
     def all_topics_no(self):
@@ -112,3 +113,13 @@ class Topics():
         self.lessons = new_lessson
 
         # add the created Lessons() obj to storage
+
+    def add_question(self, question_str, option_type):
+        """Create a question obj on the topic obj"""
+        new_question = Questions(question_str, option_type)
+
+        self.questions.append(new_question)
+
+        # Save to storage
+
+        return new_question
