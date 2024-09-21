@@ -11,6 +11,12 @@ from views import app_views
 from flask import jsonify
 
 
+@app_views.route('/', strict_slashes= False)
+def welcome():
+    """Welcones user to web app"""
+    txt = 'Welcome to Unlearn: Redefining the biochemical learning experience'
+    return jsonify(txt)
+
 @app_views.route('/login', strict_slashes=False)
 def login():
     """Receieve user login for authentication"""
