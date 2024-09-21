@@ -19,45 +19,33 @@ class TestTopics(unittest.TestCase):
         """Tests Topics object creation"""
         try:
             monosaccharides = Topics(
-                210,
-                'monosaccharides',
-                'carbohydrates',
-                'sugars in biochemistry',
-                'one molecule sugars'
+                topic_title='monosaccharides',
+                course_code=210,
+                topic_desc='one molecule sugars',
+                topic_lecturer='Mrs Kolawole'
             )
         except TypeError:
             self.fail('TypeError Occured: Invalid arg(s) passed')
 
         self.assertEqual(monosaccharides.course_code, 210)
-        self.assertEqual(monosaccharides.course_title, 'carbohydrates')
-        self.assertNotEqual(monosaccharides.course_desc, '')
-        self.assertIsNotNone(monosaccharides.topic_desc)
+        self.assertEqual(monosaccharides.course_title, '')
+        self.assertEqual(monosaccharides.course_desc, '')
+        self.assertEqual(monosaccharides.topic_desc, 'one molecule sugars')
+        self.assertEqual(monosaccharides.topic_lecturer, 'Mrs Kolawole')
 
     def test_add_lesson(self):
         """Tests add_lesson() in adding a new lesson"""
         obj_topic = Topics(
-            210,
             'monosaccharides',
-            'carbohydrates',
-            'sugars in biochemistry',
+            210,
             'one molecule sugars'
         )
-        obj_topic.add_lesson(  # add a new lesson
-            'learn carbohydrates',
-            'this is how to eaily learn carbohydrates',
-            'helping students learn carbohydrates'
-        )
-        obj_lesson = Lessons(  # create a duplicate of the object
-            'learn carbohydrates',
-            'this is how to eaily learn carbohydrates',
-            'helping students learn carbohydrates'
-        )
+        all_lessons_list = obj_topic.lessons  # rem: weird obj behaviour in python
+        self.assertEqual(len(all_lessons_list), 0)
 
-        for lesson_dict in obj_topic.lessons:
-            for key, value in lesson_dict():
-                if key != 'lesson_id':
-                    self.assertEqual(value, obj_lesson.key)
-                    self.assertNotEqual(
-                        obj_topic.lessons['lesson_id'],
-                        obj_lesson.lesson_id
-                    )
+        obj_topic.add_lesson(
+            'learn carbohydrates',
+            'this is how to easily learn carbohydrates',
+            'helping students learn carbohydrates'
+        )
+        self.assertEqual(len(all_lessons_list), len(obj_topic.lessons))

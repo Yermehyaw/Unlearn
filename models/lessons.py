@@ -90,6 +90,11 @@ class Lessons:
             Args:
             None
 
+            Description:
+            1. load questions from db
+            2. arrange tgem in sequential order for 'Next', 'Previous', 'Tip',
+            and 'Submit' perusal
+            3  Returns a Result object(?) to be used to update a StudentsProgress object
             """
             # question = Questions( , )
 
