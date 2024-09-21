@@ -29,7 +29,7 @@ class Topics(Courses):
     topic_desc(str): topic description (optional)
 
     Attributes:
-    topic_id(int): unique id of a topic
+    topic_id(str): unique id of a topic
     lessons(list): list of all lessons the topic comprises
     course_code(int): unique course code
     topic_title(str): title of the topic
@@ -39,18 +39,19 @@ class Topics(Courses):
     topic_lecturer(str): name of lecturer taking the topic
 
     """
+    no_topics = 0  # save to storage
+
     def __init__(
             self,
-            course_code,
             topic_title,
-            course_title=None,
-            course_desc=None,
             topic_desc=None,
             topic_lecturer=None
     ):
         super().__init__(course_code, course_title, course_desc)
 
-        self.topic_id = uuid4()
+        Topics.no_topics += 1
+
+        self.topic_id = 'topic' + str(uuid4().int)
 
         self._lessons = []  # add to storageDB
 
