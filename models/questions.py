@@ -54,6 +54,8 @@ class Questions:
         self._useful_in_topic_id = []
         self._useful_in_topic_name = []
 
+        self.option_selection = {}
+
         if not isinstance(options, list):
             raise TypeError('Options must be entered as a list')
 
@@ -71,11 +73,12 @@ class Questions:
                 if len(options) < 5 or len(options) > 5:
                     raise ValueError('Pls enter  5 options for mcq option_type')
                 else:  # arrange pased option list as a dict
-                    for option in options:
-                        for op in ops:
-                            self.option_selection = {
-                                op: [option, 'option_' + str(uuid4().int)]
-                            }
+                    # nested loop bug
+                    for op in ops:
+                        for option in options:
+                            self.option_selection.update(
+                                {op: [option, 'option_' + str(uuid4().int)]}
+                            )
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
@@ -114,7 +117,7 @@ class Questions:
                         self.option_selection['D'],
                         self.option_selection['E']
                     ],
-                    'correct_option': self.correct_option[1]
+                    'correct_option': self.correct_option
                     # index 1 is the option_text
                 }
         elif self.option_type == 't/f':
@@ -131,11 +134,11 @@ class Questions:
                         self.option_selection['True'],
                         self.option_selection['False']
                     ],
-                    'correct_option': self.correct_option[1]
+                    'correct_option': self.correct_option
                 }
 
-        final_pretty_q = pretty_question.update(pretty_option)
-        return final_pretty_q
+        pretty_question.update(pretty_option)
+        return pretty_question
 
 
     def edit_question(
