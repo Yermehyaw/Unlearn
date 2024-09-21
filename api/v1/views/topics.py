@@ -26,7 +26,7 @@ def all_topics_count():
     total = 0  # change when retrieved from storage
     total = {'Total topics': total}
     return jsonify(total)
-    
+
 @app_views.route(
     '/topics/<course_title>',
     methods=['GET', 'POST'],
