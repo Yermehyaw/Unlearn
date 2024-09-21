@@ -70,3 +70,5 @@ class Courses:
         Courses.no_topics += 1
 
         Courses.all_topics.append(new_topic.topic_title)
+
+        return new_topic
