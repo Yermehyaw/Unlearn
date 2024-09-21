@@ -29,4 +29,12 @@ Visit [unlearn.com](www.contrite.unlearn.com) to get started.
 Once youre on the web site, youll need to either create an account or log in, but if you dont have the time for such, you can always explore the app and take a quick quiz session or as I like to call it, a quick 'unlearn session'. Note that all progress made in such asession is unsaved and wont be recoverably when you use the app another time.
 
 ### CONSOLE
+To use the console, youll need to be able to communicate to the server via ssh. To do this, youll need a valid ssh key. To generate one, visit [here](www.contrite.unlearn.com/ssh). You can only create a maximum of **two** ssh keys per ip address.
 
+Next follow the prompt, copy the connection details shown, paste this in your client and youll set up and ready to begin.
+
+For more indepth documentation/details, kindly visit the [wiki]()
+
+## APIs
+The Unlearn web app utilizes a RESTFul API to provide information on the internals of the app to outsiders (especilaly fellow developers), who would be interested in utlizing this information i n their personal research or other web activities. If this sounds like you, then please continue reading.
+### Using the APIs
