@@ -42,7 +42,9 @@ def spec_courses(course_code):
         return jsonify(course_details)
 
     elif request.method == 'POST':
-        if course code dosent exist:
+        if 1:  # course already exists:
+             return jsonify({'response': 'course already exists'})
+        else:  # course not  found in storage
             new_course = Courses(course_code)
             form_data = request.form  # attain any data via a form (not json)
             if form_data:
@@ -55,5 +57,3 @@ def spec_courses(course_code):
                         new_course.no_topics = value
         # add to storage using save() via new_course.save()
             return jsonify({'response': 'course created successfully'})
-        else:  # course found in storage
-            return jsonify({'response': 'course already exists'})
