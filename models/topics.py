@@ -79,6 +79,11 @@ class Topics():
             else:
                 self.topic_lecturer = topic_lecturer
 
+    @property
+    def all_topics_no(self):
+        """Returns the total no of topics"""
+        # use self.reload() to retrieve from db or storage would handle this
+        return Topics.no_topics
 
     @property
     def lessons(self):
@@ -104,6 +109,6 @@ class Topics():
         Crucial in storageDB
         """
         new_lessson = Lessons(lesson_title, lesson_content, lesson_desc)
-a        self.lessons = new_lessson
+        self.lessons = new_lessson
 
         # add the created Lessons() obj to storage
