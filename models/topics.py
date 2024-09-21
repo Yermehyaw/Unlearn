@@ -10,26 +10,23 @@ Lessons(class) - create a lesson object
 """
 from uuid import uuid4
 if __name__ == '__main__':
-    from courses import Courses
     from lessons import Lessons
 else:
-    from .courses import Courses
     from .lessons import Lessons
 
 
-class Topics(Courses):
+class Topics():
     """
     Create a topic under each course offered by a student
 
     Args:
-    course_code(int): unique course code
     topic_title(str): title of the topic
-    course_title(str): name/title of course (optional)
-    course_desc(str): course details (optional)
+    course_code(int): unique course code
     topic_desc(str): topic description (optional)
+    topic_lecturer(str): name of lecturer taking the topic (optional)
 
     Attributes:
-    topic_id(int): unique id of a topic
+    topic_id(str): unique id of a topic
     lessons(list): list of all lessons the topic comprises
     course_code(int): unique course code
     topic_title(str): title of the topic
@@ -40,18 +37,24 @@ class Topics(Courses):
 
     """
     no_topics = 0  # save to storage
-    
+
     def __init__(
             self,
             topic_title,
+            course_code,
             topic_desc=None,
             topic_lecturer=None
     ):
-        super().__init__(course_code, course_title, course_desc)
+        # super().__init__(course_code)
+        # if not isinstance(self.course_code, str):
 
-        Topics.no_topics += 1
+        # if not isinstance(self.course_title, str):
 
-        self.topic_id = uuid4()
+        # if not isinstance(self.course_desc, str):
+
+        Topics.no_topics += 1  # save to db
+
+        self.topic_id = 'topic' + str(uuid4().int)
 
         self._lessons = []  # add to storageDB
 
@@ -60,17 +63,20 @@ class Topics(Courses):
         else:
             self.topic_title = topic_title
 
-        self.topic_desc = topic_desc
+        self.topic_desc = ''
         if topic_desc:
             if not isinstance(topic_desc, str):
                 raise TypeError('Invalid topic desc')
             else:
                 self.topic_desc = topic_desc
 
-        if not isinstance(topic_lecturer, str):
-            raise TypeError('Invalid lecturer name')
-        else:
-            self.topic_lecturer = topic_lecturer
+        self.topic_lecturer = ''
+        if topic_lecturer:
+            if not isinstance(topic_lecturer, str):
+                raise TypeError('Invalid lecturer name')
+            else:
+                self.topic_lecturer = topic_lecturer
+
 
     @property
     def lessons(self):
