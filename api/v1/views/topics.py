@@ -6,6 +6,7 @@ Modules Imported: app_views, SQLALchemy, jsonify, Topics
 
 app_views: flask api blueprint
 jsonify: convert response to valid json
+make_response: add http features to api responses
 Topics(cls): Topics class
 SQLAlchemy: ORM for flask apps
 
@@ -13,6 +14,7 @@ SQLAlchemy: ORM for flask apps
 from views import app_views
 from models.topics import Topics
 from flask import jsonify
+from flask import make_response
 from flask import request
 from flask_sqlalchemy import SQLALchemy
 
@@ -53,6 +55,7 @@ def all_topics_list(course_title):
             else:
                 return jsonify({'response': 'No form data sent'})
             new_topic = 'req_course.add_topic(new_topic_title)'
-            return jsonify({'response': 'topoc created successfully'})
+            resp = jsonify({'response': 'topic created successfully'})
+            return make_response(resp, 201)
         else:  # course dosent exist, course must exist to have a topic
-            return jsonify({'response': 'course not found'})
+            return make_response(jsonify({'response': 'course not found'}), 404)
