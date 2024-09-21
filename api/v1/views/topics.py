@@ -58,4 +58,4 @@ def all_topics_list(course_title):
             resp = jsonify({'response': 'topic created successfully'})
             return make_response(resp, 201)
         else:  # course dosent exist, course must exist to have a topic
-            return make_response(jsonify({'response': 'course not found'}), 404)
+            return make_response(jsonify({'response': 'course not found'}), 400)
