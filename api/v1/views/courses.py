@@ -6,11 +6,14 @@ Modules Imported: api_views, Courses, jsonify
 
 api_views: flask api blueprint
 jsonify: convert response to valid json
+make_response: maje http responses
 Courses: Courses class
+
 """
 from views import api_views
 from models.courses import Courses
 from flask import jsonify
+from flask import make_response
 from flask import request
 
 
@@ -56,4 +59,5 @@ def spec_courses(course_code):
                     if key == 'no_topics':
                         new_course.no_topics = value
         # add to storage using save() via new_course.save()
-            return jsonify({'response': 'course created successfully'})
+        resp = jsonify({'response': 'course created successfully'})
+        return make_response(resp, 201)
