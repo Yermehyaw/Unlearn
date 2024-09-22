@@ -114,12 +114,9 @@ class Topics():
 
         # add the created Lessons() obj to storage
 
-    def add_question(self, question_str, option_type):
+    def add_questions(self, question_str, option_type):
         """Create a question obj on the topic obj"""
         new_question = Questions(question_str, option_type)
-
         self.questions.append(new_question)
-
         # Save to storage
-
         return new_question
