@@ -28,7 +28,7 @@ class Courses:
 
     """
     no_topics = 0
-    all_topics = []
+    all_topics = []  # Change to obj attr(?). each course all_topics differs
 
     def __init__(self, course_code, course_title=None, course_desc=None):
         """Course object initializer"""
