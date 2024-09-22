@@ -25,9 +25,16 @@ def all_course_questions(course_title):
     # If course exists in storage, save as req_course
     topics_in_course = 'req_course.get_all_topics_list'  # a list
     topics_in_course = []  # placeholder, remove
-    useful_in_topics = []  # load from storage
+    course_questions = {'course title': 'req_course.course title'}
     for topic in topics_in_course:
-        if topic in
+        questions_in_topic = topic.questions
+        q_list = []
+        for question in questions_in_topic:
+            question_str = question.question_str
+            q_list.append(question_str)
+        topic_q = {topic.topic_title: q_list}
+        course_questions.update(topic_q)
+    return jsonify(course_questions)
 
 @app_views.route(
     '/quiz/<course_title>/<topic_title>',
