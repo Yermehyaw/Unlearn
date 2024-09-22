@@ -63,14 +63,17 @@ class Lessons:
         quiz_id(str): unique id of a quiz
         quiz_name(str): name of quiz
         quiz_type(str): type of quiz e.g MCQ, T/F
-        score(int): score on a quiz session
+        score(int): total score on a quiz session
+        percentage_score(): percentage score on a quiz session
+        questions_answered_correct(list): list of Question obj answered correct
+        questions_answered_wrong(list): list of Question objs answered wrongly
 
         """
         def __init__(self, quiz_name, quiz_type=None):
             """Class initializer"""
             self.quiz_id = 'quiz_' + str(uuid4().int)
 
-            # also check if quiz nane already exisrs in the db
+            # also check if quiz name already exists in the db
             if not isinstance(quiz_name, str):
                 raise TypeError('Invalid quiz name')
             else:
@@ -82,23 +85,31 @@ class Lessons:
                 self.quiz_type = quiz_type
 
             self.score = 0
+            self.percentage_score = '0%'
+            self.questions_answered_correct = []
+            self.questions_answered_wrong = []
 
-        def new_quiz_session(self):
+        def new_quiz_session(self, student_id=None):
             """
             Prepares a new quiz session for a user
 
             Args:
-            None
+            student_id(str): id of student taking the quiz (optional)
 
             Description:
             1. load questions from db
-            2. arrange tgem in sequential order for 'Next', 'Previous', 'Tip',
+            2. arrange them in sequential order for 'Next', 'Previous', 'Tip',
             and 'Submit' perusal
-            3  Returns a Result object(?) to be used to update a StudentsProgress object
+            3  Returns a Result object(?) to be used to update a students progress
             """
-            # question = Questions( , )
+            # questions = []
+            # questions = question_gen()  # func to be imported
+            # in a loop append question obj from storage to the list
 
+            # total_questions = len(questions)
+            # call marker() func on each resp after 'Next', 'Previous' or 'Submit' is clicked
+            # score = 
             # more code
 
-            # session = ##
+            # session = Result()
             # return session
