@@ -34,6 +34,10 @@ class TestResult(unittest.TestCase):
 
         self.assertEqual(student_result.status, 'Failed')
 
+        # Activate when real questions are added to storage
+        # with self.assertRaises(ValueError):
+            # self.score = 105
+
         student_result.score = 100
         self.assertEqual(student_result.status, 'Passed')
         self.assertEqual(student_result.percentage_score, '100%')
