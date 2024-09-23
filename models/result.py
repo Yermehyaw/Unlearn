@@ -36,6 +36,11 @@ d wrongly
         """Result object initializer"""
         self.result_id = 'result_' + str(uuid4().int)
 
+        try:
+            quiz_obj.quiz_id = quiz_obj.quiz_id
+            quiz_obj.quiz_name = quiz_obj.quiz_name
+        except AttributeError:
+            raise TypeError('Invalid quiz object')
         self.quiz_id = quiz_obj.quiz_id
         self.quiz_name = quiz_obj.quiz_name
 
