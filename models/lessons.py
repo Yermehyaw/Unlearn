@@ -8,10 +8,6 @@ Questions(class) - question bank
 
 """
 from uuid import uuid4
-if __name__ == '__main__':
-    from questions import Questions
-else:
-    from .questions import Questions
 
 
 class Lessons:
@@ -51,25 +47,34 @@ class Lessons:
             else:
                 self.lesson_desc = lesson_desc
 
+    if __name__ == '__main__':
+        from questions import Questions
+        from result import Result
+    else:
+        from .questions import Questions
+        from .result import Result
+
+
     class Quiz:
         """
         Interface for answering questions after a lesson. Creates
         a dynamic quiz session
 
         Args:
-        None
+        quiz_name(str): name of tge quiz
+        topic_title(str): name of topic in which quiz is based on
+        quiz_type(str): type of quiz questions i.e mcq or t/f
 
         Attributes:
         quiz_id(str): unique id of a quiz
         quiz_name(str): name of quiz
+        topic_title(str): name of topic in which quiz is based on
         quiz_type(str): type of quiz e.g MCQ, T/F
-        score(int): total score on a quiz session
-        percentage_score(): percentage score on a quiz session
-        questions_answered_correct(list): list of Question obj answered correct
-        questions_answered_wrong(list): list of Question objs answered wrongly
+        student_id(str): id of student undertaking the quiz
+        questions(list): list of generated questions for the quiz
 
         """
-        def __init__(self, quiz_name, quiz_type=None):
+        def __init__(self, quiz_name, topic_title, quiz_type=None):
             """Class initializer"""
             self.quiz_id = 'quiz_' + str(uuid4().int)
 
@@ -78,38 +83,45 @@ class Lessons:
                 raise TypeError('Invalid quiz name')
             else:
                 self.quiz_name = quiz_name
+            # should it also be ascertained if the topic exists?
+            if not isinstance(quiz_name, str):
+                raise TypeError('Invalid quiz name')
+            else:
+                self.topic_title = topic_title
 
             if not isinstance(quiz_type, str):
-                raise TypeError('Invalid quiz type')
+                raise TypeError('Invalid quiz type')7
             else:
                 self.quiz_type = quiz_type
 
-            self.score = 0
-            self.percentage_score = '0%'
-            self.questions_answered_correct = []
-            self.questions_answered_wrong = []
+            self.student_id = ''
+            self.questions = []
 
-        def new_quiz_session(self, student_id=None):
+        def get_questions(self, student_id=''):
             """
-            Prepares a new quiz session for a user
+            Generates questions from storage for a quiz session
 
             Args:
             student_id(str): id of student taking the quiz (optional)
 
-            Description:
-            1. load questions from db
-            2. arrange them in sequential order for 'Next', 'Previous', 'Tip',
-            and 'Submit' perusal
-            3  Returns a Result object(?) to be used to update a students progress
             """
-            # questions = []
-            # questions = question_gen()  # func to be imported
+            self.student_id = student_id
+            self.questions = []
             # in a loop append question obj from storage to the list
+            # call save() (?)
+            return self.questions
 
+        def result_gen(user_attempts):
+            """
+            Receives attempts on a quiz from a quiz session and creates a
+            Result obj for updating a students progress
+
+            Args:
+            user_attempts(list): list of answrered question obj i.e
+            with an initialized selected_option attr
+
+            """
+            # call marker() func(to be imported) on each resp after 'Next', 'Previous' or 'Submit' is clicked
             # total_questions = len(questions)
-            # call marker() func on each resp after 'Next', 'Previous' or 'Submit' is clicked
-            # score = 
-            # more code
-
-            # session = Result()
-            # return session
+            new_result = Result(self, self.student_id)
+            return new_result
