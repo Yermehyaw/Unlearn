@@ -28,18 +28,20 @@ class TestResult(unittest.TestCase):
         with self.assertRaises(TypeError):
             student_result = Result('quiz', student.student_id)
 
-        self.assertEqual(student.score, 0)
+        self.assertEqual(student_result.score, 0)
 
-        self.assertEqual(student.status, 'Failed')
+        self.assertEqual(student_result.percentage_score, '0%')
 
-        student.score = 100
-        self.assertEqual(student.status, 'Passed')
+        self.assertEqual(student_result.status, 'Failed')
 
-        student.score = 49
-        self.assertEqual(student.status, 'Failed')
+        student_result.score = 100
+        self.assertEqual(student_result.status, 'Passed')
+        self.assertEqual(student_result.percentage_score, '100%')
 
-        self.assertEqual(student.quiz_id, quiz.quiz_id)
+        student_result.score = 49
+        self.assertEqual(student_result.status, 'Failed')
+        self.assertEqual(student_result.percentage_score, '49%')
 
-        self.assertEqual(student.quiz_name, quiz.quiz_name)
+        self.assertEqual(student_result.quiz_id, quiz.quiz_id)
 
-        self.assertEqual(student.percentage_score, '0%')
+        self.assertEqual(student_result.quiz_name, quiz.quiz_name)
