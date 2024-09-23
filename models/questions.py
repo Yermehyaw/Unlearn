@@ -29,8 +29,10 @@ class Questions:
     option_type(str): type of option the question has i.e either t/f or mcq
     option_selection(dict): selectable options each with an
     individual option_id and option_text
-    selected_option(list): option_id and option_text of the selected option
-    correct_option(list): option_id and option_text of the corrrect option
+    selected_option_id(str): option_id of selected option
+    to be derived from option_selection e.g option_selection['A'][1]
+    correct_option(list): option_id of corrrect option
+    status(str): status of question attempt by student i.e 'correct' or 'wrong'
 
     """
     def __init__(self, question_str, option_type, options=[], tip=None):
@@ -73,12 +75,12 @@ class Questions:
                 if len(options) < 5 or len(options) > 5:
                     raise ValueError('Pls enter  5 options for mcq option_type')
                 else:  # arrange pased option list as a dict
-                    # nested loop bug
-                    for op in ops:
-                        for option in options:
-                            self.option_selection.update(
-                                {op: [option, 'option_' + str(uuid4().int)]}
-                            )
+                    self.option_selection = dict(zip(ops, options))
+                    for key, value in self.option_selection.items():
+                        self.option_selection[key] = [self.option_selection[key]]
+                        option_list = self.option_selection[key]
+                        option_list.append('option_' + str(uuid4().int))
+
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
@@ -88,9 +90,11 @@ class Questions:
             elif option_type == 'mcq':
                 self.option_selection = {}
 
-        self.selected_option = []
+        self.selected_option = ''
 
-        self.correct_option = []
+        self.correct_option = ''
+
+        self.status = ''
 
 
     @property
@@ -225,7 +229,7 @@ class Questions:
 
     def useful_in(self, get_ids=True):
         """
-        Get the list of topic ids or nanes in which the question can be used in
+        Get the list of topic ids or names in which the question can be used in
         """
         if get_ids:
             return self._useful_in_topic_id
