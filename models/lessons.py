@@ -93,7 +93,7 @@ class Lessons:
                 self.topic_title = topic_title
 
             if not isinstance(quiz_type, str):
-                raise TypeError('Invalid quiz type')7
+                raise TypeError('Invalid quiz type')
             else:
                 self.quiz_type = quiz_type
 
