@@ -74,7 +74,8 @@ class Lessons:
         quiz_type(str): type of quiz e.g MCQ, T/F
         student_id(str): id of student undertaking the quiz
         questions(list): list of generated questions for the quiz
-        answered_questions(list): list of answered generated questions
+        marked_questions(list): answered questions marked
+        'corect' or 'wrong' by updating their status attr
 
         """
         def __init__(self, quiz_name, topic_title, quiz_type=None):
@@ -99,7 +100,7 @@ class Lessons:
 
             self.student_id = ''
             self.questions = []
-            self.answered_questions = []
+            self.marked_questions = []
 
         def get_questions(self, student_id=''):
             """
@@ -125,8 +126,7 @@ class Lessons:
             with an initialized selected_option attr
 
             """
-            marked_questions = marker(user_attempts)
-            self.answered_questions = marked_questions  # status attr updated
+            self.marked_questions = marker(user_attempts)
             # call save() (?)
             new_result = Result(self, self.student_id)
             return new_result
