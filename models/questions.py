@@ -77,6 +77,7 @@ class Questions:
                 else:  # arrange pased option list as a dict
                     self.option_selection = dict(zip(ops, options))
                     for key, value in self.option_selection.items():
+                        self.option_selection[key] = [self.option_selection[key]]
                         option_list = self.option_selection[key]
                         option_list.append('option_' + str(uuid4().int))
                     """
