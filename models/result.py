@@ -7,10 +7,7 @@ uuid4(mthd): create unique uuid
 
 """
 from uuid import uuid4
-if __name__ == '__main__':
-    from lessons import Lessons
-else:
-    from .lessons import Lessons
+
 
 class Result:
     """
@@ -39,11 +36,8 @@ d wrongly
         """Result object initializer"""
         self.result_id = 'result_' + str(uuid4().int)
 
-        if not isinstance(quiz_obj, Lessons.Quiz):
-            raise TypeError('Invalid quiz object')
-        else:
-            self.quiz_id = quiz_obj.quiz_id
-            self.quiz_name = quiz_obj.quiz_name
+        self.quiz_id = quiz_obj.quiz_id
+        self.quiz_name = quiz_obj.quiz_name
 
         self.score = 0
         self.questions_answered_correct = []
