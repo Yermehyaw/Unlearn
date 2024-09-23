@@ -52,12 +52,25 @@ class TestQuestions(unittest.TestCase):
                         print(f'{q1_options[key]} == {option_arg[i]}?')
                         self.assertEqual(q1_options[key][0], option_arg[i])
                         break
-        q2_options = q2.option_selection.values()
-        for key, value in q2_options:
+        q2_options = q2.option_selection
+        for key, value in q2_options.items():
                 if key == 'True':
-                    self.assertEqual(q2_options[key][0], True)
+                    option_list_val = q2_options[key]
+                    # nested loop necessary because of dict_values behaviour
+                    for item in option_list_val:
+                        if item:  # item is True
+                            pass
+                        else:
+                            self.fail('True option is not defined as True in its list')
+                        break  # only one iteration is needed, True is at index 0
                 elif key == 'False':
-                    self.assertEqual(q2_options[key][0], False)
+                    option_list_val = q2_options[key]
+                    for item in option_list_val:
+                        if not item: # item is False
+                            pass
+                        else:
+                            self.fail('False option is not defined as False in its list')
+                        break
 
         self.assertEqual(len(q1.selected_option), 0)
         self.assertEqual(len(q1.correct_option), 0)
@@ -72,4 +85,3 @@ class TestQuestions(unittest.TestCase):
                 option_arg
             )
         question_reveal_format = q1.show_question
-        print(question_reveal_format)

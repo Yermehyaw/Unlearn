@@ -45,8 +45,8 @@ class TestLessons(unittest.TestCase):
         with self.assertRaises(TypeError):
             quiz = new_lesson.Quiz(1, 't/f')
 
-        quiz = new_lesson.Quiz('enzyme_concepts', 'mcq')
+        quiz = new_lesson.Quiz('enzyme_concepts', 'enzymes', 'mcq')
 
-        self.assertEqual(quiz.score, 0)
+        self.assertEqual(quiz.topic_title, 'enzymes')
 
         self.assertEqual(quiz.quiz_name, 'enzyme_concepts')
