@@ -7,7 +7,10 @@ uuid4(mthd): create unique uuid
 
 """
 from uuid import uuid4
-
+if __name__ == '__main__':
+    from lessons import Lessons
+else:
+    from .lessons import Lessons
 
 class Result:
     """
@@ -36,7 +39,7 @@ d wrongly
         """Result object initializer"""
         self.result_id = 'result_' + str(uuid4().int)
 
-        if not isinstance(quiz_obj, Quiz):
+        if not isinstance(quiz_obj, Lessons.Quiz):
             raise TypeError('Invalid quiz object')
         else:
             self.quiz_id = quiz_obj.quiz_id
@@ -56,9 +59,9 @@ d wrongly
             elif len(q.status) == 0:
                 self.questions_unattempted.append(q)
 
-        if self.score > 50:
+        if self.score >= 50:
             self.status = 'Passed'
-        elif self.score < 50:
+        elif self.score <= 49:
             self.status = 'Failed'
 
         self.percentage_score = str((score/total_questions) * 100) + '%'
