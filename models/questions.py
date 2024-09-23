@@ -76,7 +76,7 @@ class Questions:
                     raise ValueError('Pls enter  5 options for mcq option_type')
                 else:  # arrange pased option list as a dict
                     self.option_selection = dict(zip(ops, options))
-                    for key, value in self.option_selection:
+                    for key, value in self.option_selection.items():
                         option_list = self.option_selection[key]
                         option_list.append('option_' + str(uuid4().int))
                     """
