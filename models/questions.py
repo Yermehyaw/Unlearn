@@ -84,8 +84,8 @@ class Questions:
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
-                    'True': ['True', 'option_' + str(uuid4().int)],
-                    'False': ['False', 'option_' + str(uuid4().int)]
+                    'True': [True, 'option_' + str(uuid4().int)],
+                    'False': [False, 'option_' + str(uuid4().int)]
                 }
             elif option_type == 'mcq':
                 self.option_selection = {}
