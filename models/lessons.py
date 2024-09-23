@@ -72,7 +72,7 @@ class Lessons:
         quiz_name(str): name of quiz
         topic_title(str): name of topic in which quiz is based on
         quiz_type(str): type of quiz e.g MCQ, T/F
-        student_id(str): id of student undertaking the quiz
+        student_id(str): id of student taking the quiz
         questions(list): list of generated questions for the quiz
         marked_questions(list): answered questions marked
         'corect' or 'wrong' by updating their status attr
