@@ -50,9 +50,11 @@ class Lessons:
     if __name__ == '__main__':
         from questions import Questions
         from result import Result
+        import marker
     else:
         from .questions import Questions
         from .result import Result
+        from models import marker
 
 
     class Quiz:
@@ -124,12 +126,8 @@ class Lessons:
 
             """
             # call marker() func(to be imported) on each resp after 'Next', 'Previous' or 'Submit' is clicked
-            if not isinstance(user_attempts, list):
-                raise TypeError('Invalid arg: user_attempts must be a list')
-            elif not isinstance(user_attempts[0], Questions):
-                raise TypeError('Only Questions obj are allowed')
-            else:
-                self.answered_questions = user_attempts
-
+            marked_questions = marker(user_attempts)
+            self.answered_questions = marked_questions  # status attr updated
+            # call save() (?)
             new_result = Result(self, self.student_id)
             return new_result
