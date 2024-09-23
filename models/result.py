@@ -8,7 +8,6 @@ Quiz(cls): Quiz cls
 
 """
 from uuid import uuid4
-from lessons import Quiz
 
 
 class Result:
@@ -27,9 +26,13 @@ class Result:
     score(int): percentage score on the quiz in int
     percentage_score(str): percentage score on the quiz as str
     status(str): passed or failed
+    questions_answered_correct(list): list of Question obj answer\
+ed correct
+    questions_answered_wrong(list): list of Question objs answere\
+d wrongly
 
     """
-    def __init__(self, quiz_obj, user_attempts, student_id=None):
+    def __init__(self, quiz_obj, student_id=None):
         """Result object initializer"""
         self.result_id = 'result_' + str(uuid4().int)
 
@@ -38,40 +41,22 @@ class Result:
         else:
             self.quiz_id = quiz_obj.quiz_id
             self.quiz_name = quiz_obj.quiz_name
-            self.score = quiz_obj.percentage_score
-            self.percentage_score = quiz_obj.percentage_score
 
-        self.percentage_score = 
+        self.score = 0
+        self.questions_answered_correct = []
+        self.questions_answered_wrong = []
+        questions = quiz_obj.answered_questions
+        total_questions = len(questions)
+        for q in questions:
+            if q.selected_option == q.correct_option:
+                self.score += 1
+                self.questions_answered_correct.append(q)
+            else:
+                self.questions_answered_wrong.append(q)
 
-        if self.percentage_score > 50:
+        if self.score > 50:
             self.status = 'Passed'
-        elif self.percentage_score < 50:
+        elif self.score < 50:
             self.status = 'Failed'
 
-        if course_desc:
-            if not isinstance(course_desc, str):
-                raise TypeError('Invalid course desc')
-            else:
-                self.course_desc = course_desc
-
-    @property
-    def get_topics_no(self):
-        """Returns the no of topics in each course"""
-        # retrieve no_topocs from db
-        return Courses.no_topics
-
-    @property
-    def get_all_topics_list(self):
-        """Returns a list of all topics in the course"""
-        # retrieve from db
-        return Courses.all_topics
-
-    def add_topic(self, new_topic_title, new_cs_code=None):
-        """Creates a new topic"""
-        new_topic = Topics(new_topic_title, self.course_code)
-
-        Courses.no_topics += 1
-
-        Courses.all_topics.append(new_topic.topic_title)
-
-        return new_topic
+        self.percentage_score = str((score/total_questions) * 100) + '%'
