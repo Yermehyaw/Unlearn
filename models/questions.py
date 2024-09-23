@@ -75,12 +75,14 @@ class Questions:
                 if len(options) < 5 or len(options) > 5:
                     raise ValueError('Pls enter  5 options for mcq option_type')
                 else:  # arrange pased option list as a dict
-                    # nested loop bug
+                    self.option_selection = dict(zip(ops, options))
+                    """
                     for op in ops:
                         for option in options:
                             self.option_selection.update(
                                 {op: [option, 'option_' + str(uuid4().int)]}
                             )
+                    """
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
