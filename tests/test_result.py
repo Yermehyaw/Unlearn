@@ -30,7 +30,7 @@ class TestResult(unittest.TestCase):
 
         self.assertEqual(student_result.score, 0)
 
-        self.assertEqual(student_result.percentage_score, '0%')
+        self.assertEqual(student_result.percentage_score, '0.00%')
 
         self.assertEqual(student_result.status, 'Failed')
 
@@ -40,11 +40,11 @@ class TestResult(unittest.TestCase):
 
         student_result.score = 100
         self.assertEqual(student_result.status, 'Passed')
-        self.assertEqual(student_result.percentage_score, '100%')
+        self.assertEqual(student_result.percentage_score, '100.00%')
 
         student_result.score = 49
         self.assertEqual(student_result.status, 'Failed')
-        self.assertEqual(student_result.percentage_score, '49%')
+        self.assertEqual(student_result.percentage_score, '49.00%')
 
         self.assertEqual(student_result.quiz_id, quiz.quiz_id)
 
