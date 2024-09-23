@@ -76,7 +76,7 @@ d wrongly
         return self.score
 
     @score.setter
-    def set_score(self, new_score):
+    def score(self, new_score):
         """Update other obj attr as score is updated"""
         questions = quiz_obj.marked_questions
         total_questions = len(questions)
