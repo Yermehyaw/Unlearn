@@ -85,4 +85,3 @@ class TestQuestions(unittest.TestCase):
                 option_arg
             )
         question_reveal_format = q1.show_question
-        print(question_reveal_format)
