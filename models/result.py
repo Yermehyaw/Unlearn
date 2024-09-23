@@ -4,7 +4,6 @@ Result of a quiz session
 
 Modules Imported:
 uuid4(mthd): create unique uuid
-Quiz(cls): Quiz cls
 
 """
 from uuid import uuid4
