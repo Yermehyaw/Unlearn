@@ -85,7 +85,7 @@ d wrongly
             # raise ValueError('Invalid score: score greater total questions')
         # else:
         self._score = new_score
-        if total_questions == 0:
+        if self.total_questions == 0:
             self.percentage_score = '0.00%'
         else:
             float_score = float(self._score/total_questions) * 100
