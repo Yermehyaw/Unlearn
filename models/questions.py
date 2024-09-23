@@ -31,6 +31,7 @@ class Questions:
     individual option_id and option_text
     selected_option(list): option_id and option_text of the selected option
     correct_option(list): option_id and option_text of the corrrect option
+    status(str): status of question attempt by student i.e 'correct' or 'wrong'
 
     """
     def __init__(self, question_str, option_type, options=[], tip=None):
@@ -91,6 +92,8 @@ class Questions:
         self.selected_option = []
 
         self.correct_option = []
+
+        self.status = ''
 
 
     @property
@@ -225,7 +228,7 @@ class Questions:
 
     def useful_in(self, get_ids=True):
         """
-        Get the list of topic ids or nanes in which the question can be used in
+        Get the list of topic ids or names in which the question can be used in
         """
         if get_ids:
             return self._useful_in_topic_id
