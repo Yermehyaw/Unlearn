@@ -30,6 +30,7 @@ class Result:
 ed correct
     questions_answered_wrong(list): list of Question objs answere\
 d wrongly
+    questions_unattempted(list): list of unattempted questions
 
     """
     def __init__(self, quiz_obj, student_id=None):
@@ -48,11 +49,13 @@ d wrongly
         questions = quiz_obj.answered_questions
         total_questions = len(questions)
         for q in questions:
-            if q.selected_option == q.correct_option:
+            if q.status == 'correct':
                 self.score += 1
                 self.questions_answered_correct.append(q)
-            else:
+            elif q.status == 'wrong':
                 self.questions_answered_wrong.append(q)
+            elif len(q.status) == 0:
+                self.questions_unattempted.append(q)
 
         if self.score > 50:
             self.status = 'Passed'
