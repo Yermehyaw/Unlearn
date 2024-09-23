@@ -58,4 +58,4 @@ d wrongly
         elif self.score <= 49:
             self.status = 'Failed'
 
-        self.percentage_score = str((score/total_questions) * 100) + '%'
+        self.percentage_score = str((self.score/total_questions) * 100) + '%'
