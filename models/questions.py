@@ -80,13 +80,7 @@ class Questions:
                         self.option_selection[key] = [self.option_selection[key]]
                         option_list = self.option_selection[key]
                         option_list.append('option_' + str(uuid4().int))
-                    """
-                    for op in ops:
-                        for option in options:
-                            self.option_selection.update(
-                                {op: [option, '
-                            )
-                    """
+
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
