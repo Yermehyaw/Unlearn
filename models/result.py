@@ -24,6 +24,7 @@ class Result:
     student_id(str): id of the student whose result it is
     _score(int): percentage score on the quiz in int
     percentage_score(str): percentage score on the quiz as str
+    total_questions(int): total no of questions attempted/marked by marker()
     status(str): passed or failed
     questions_answered_correct(list): list of Question obj answer\
 ed correct
@@ -47,8 +48,10 @@ d wrongly
         self._score = 0
         self.questions_answered_correct = []
         self.questions_answered_wrong = []
+
         questions = quiz_obj.marked_questions
-        total_questions = len(questions)
+        self.total_questions = len(questions)
+
         for q in questions:
             if q.status == 'correct':
                 self._score += 1
@@ -63,12 +66,11 @@ d wrongly
         elif self._score <= 49:
             self.status = 'Failed'
 
-        if total_questions == 0:
-            self.percentage_score = '0%'
+        if self.total_questions == 0:
+            self.percentage_score = '0.00%'
         else:
-            self.percentage_score = str(
-                (self.score/total_questions) * 100
-            ) + '%'
+            float_score = float(self._score/total_questions) * 100
+            self.percentage_score = str(round(float_score, 2)) + '%'
 
     @property
     def score(self):
@@ -78,19 +80,16 @@ d wrongly
     @score.setter
     def score(self, new_score):
         """Update other obj attr as score is updated"""
-        questions = quiz_obj.marked_questions
-        total_questions = len(questions)
         # Activate when real questioms are added to storage
-        # if new_score > total_questions:
+        # if new_score > self.total_questions:
             # raise ValueError('Invalid score: score greater total questions')
         # else:
         self._score = new_score
         if total_questions == 0:
-            self.percentage_score = '0%'
+            self.percentage_score = '0.00%'
         else:
-            self.percentage_score = str(
-                (self.score/total_questions) * 100
-            ) + '%'
+            float_score = float(self._score/total_questions) * 100
+            self.percentage_score = str(round(float_score, 2)) + '%'
 
         if self._score >= 50:
             self.status = 'Passed'
