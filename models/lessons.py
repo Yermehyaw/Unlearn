@@ -125,7 +125,6 @@ class Lessons:
             with an initialized selected_option attr
 
             """
-            # call marker() func(to be imported) on each resp after 'Next', 'Previous' or 'Submit' is clicked
             marked_questions = marker(user_attempts)
             self.answered_questions = marked_questions  # status attr updated
             # call save() (?)
