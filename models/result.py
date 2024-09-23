@@ -47,7 +47,7 @@ d wrongly
         self.score = 0
         self.questions_answered_correct = []
         self.questions_answered_wrong = []
-        questions = quiz_obj.answered_questions
+        questions = quiz_obj.marked_questions
         total_questions = len(questions)
         for q in questions:
             if q.status == 'correct':
@@ -66,4 +66,30 @@ d wrongly
         if total_questions == 0:
             self.percentage_score = '0%'
         else:
+            self.percentage_score = str(
+                (self.score/total_questions) * 100
+            ) + '%'
+
+    @property
+    def score(self):
+        """Get result score"""
+        return self.score
+
+    @score.setter
+    def set_score(self, new_score):
+        """Update other obj attr as score is updated"""
+        questions = quiz_obj.marked_questions
+        total_questions = len(questions)
+        if new_score > total_questions:
+            raise ValueError('Invalid score: score greater total questions')
+        else:
+            self.score = new_score
+        if total_questions == 0:
+            self.percentage_score = '0%'
+        else:
             self.percentage_score = str((self.score/total_questions) * 100) + '%'
+
+        if self.score >= 50:
+            self.status = 'Passed'
+        elif self.score <= 49:
+            self.status = 'Failed'
