@@ -22,7 +22,7 @@ class Result:
     quiz_id(str): unique id of the quiz which the result obj was generated for
     quiz_name(str): name of the quiz which has this result
     student_id(str): id of the student whose result it is
-    score(int): percentage score on the quiz in int
+    _score(int): percentage score on the quiz in int
     percentage_score(str): percentage score on the quiz as str
     status(str): passed or failed
     questions_answered_correct(list): list of Question obj answer\
@@ -44,23 +44,23 @@ d wrongly
         self.quiz_id = quiz_obj.quiz_id
         self.quiz_name = quiz_obj.quiz_name
 
-        self.score = 0
+        self._score = 0
         self.questions_answered_correct = []
         self.questions_answered_wrong = []
         questions = quiz_obj.marked_questions
         total_questions = len(questions)
         for q in questions:
             if q.status == 'correct':
-                self.score += 1
+                self._score += 1
                 self.questions_answered_correct.append(q)
             elif q.status == 'wrong':
                 self.questions_answered_wrong.append(q)
             elif len(q.status) == 0:
                 self.questions_unattempted.append(q)
 
-        if self.score >= 50:
+        if self._score >= 50:
             self.status = 'Passed'
-        elif self.score <= 49:
+        elif self._score <= 49:
             self.status = 'Failed'
 
         if total_questions == 0:
@@ -73,7 +73,7 @@ d wrongly
     @property
     def score(self):
         """Get result score"""
-        return self.score
+        return self._score
 
     @score.setter
     def score(self, new_score):
@@ -84,7 +84,7 @@ d wrongly
         # if new_score > total_questions:
             # raise ValueError('Invalid score: score greater total questions')
         # else:
-        self.score = new_score
+        self._score = new_score
         if total_questions == 0:
             self.percentage_score = '0%'
         else:
@@ -92,7 +92,7 @@ d wrongly
                 (self.score/total_questions) * 100
             ) + '%'
 
-        if self.score >= 50:
+        if self._score >= 50:
             self.status = 'Passed'
-        elif self.score <= 49:
+        elif self._score <= 49:
             self.status = 'Failed'
