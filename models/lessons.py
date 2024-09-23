@@ -72,6 +72,7 @@ class Lessons:
         quiz_type(str): type of quiz e.g MCQ, T/F
         student_id(str): id of student undertaking the quiz
         questions(list): list of generated questions for the quiz
+        answered_questions(list): list of answered generated questions
 
         """
         def __init__(self, quiz_name, topic_title, quiz_type=None):
@@ -96,6 +97,7 @@ class Lessons:
 
             self.student_id = ''
             self.questions = []
+            self.answered_questions = []
 
         def get_questions(self, student_id=''):
             """
@@ -122,6 +124,12 @@ class Lessons:
 
             """
             # call marker() func(to be imported) on each resp after 'Next', 'Previous' or 'Submit' is clicked
-            # total_questions = len(questions)
+            if not isinstance(user_attempts, list):
+                raise TypeError('Invalid arg: user_attempts must be a list')
+            elif not isinstance(user_attempts[0], Questions):
+                raise TypeError('Only Questions obj are allowed')
+            else:
+                self.answered_questions = user_attempts
+
             new_result = Result(self, self.student_id)
             return new_result
