@@ -82,7 +82,8 @@ class TestLessons(unittest.TestCase):
 
         self.assertEqual(len(quiz.marked_questions), 0)
 
-        result = quiz.result_gen([q1, q2])
+        gen_questions = [q1, q2]
+        result = quiz.result_gen(gen_questions)
         self.assertEqual(len(quiz.marked_questions), 2)
 
         q1.selected_option_id = q1.option_selection['True'][1]
