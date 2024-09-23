@@ -31,7 +31,7 @@ class Questions:
     individual option_id and option_text
     selected_option_id(str): option_id of selected option
     to be derived from option_selection e.g option_selection['A'][1]
-    correct_option(list): option_id of corrrect option
+    correct_option(str): option_id of corrrect option
     status(str): status of question attempt by student i.e 'correct' or 'wrong'
 
     """
