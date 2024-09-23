@@ -9,7 +9,7 @@ unittest: create unittests for python scripts
 import unittest
 from models.result import Result
 from models.students import Students
-from models.lessons import Quiz
+from models.lessons import Lessons
 
 
 class TestResult(unittest.TestCase):
@@ -18,7 +18,8 @@ class TestResult(unittest.TestCase):
     def test_create_result(self):
         """Tests a Result object for expected behaviour"""
         student = Students('jboy', 'joboy1234', 'Joseph')
-        quiz = Quiz('enzyme_concepts', 'enzymes', 't/f')
+        lesson = Lessons('learn enzyme trick', 'de-hydrogen-ase')
+        quiz = lesson.Quiz('enzyme_concepts', 'enzymes', 't/f')
         try:
             student_result = Result(quiz, student.student_id)
         except TypeError:
