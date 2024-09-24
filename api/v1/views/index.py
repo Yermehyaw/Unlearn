@@ -48,4 +48,4 @@ def profile(student_id):
     }
     return jsonify(student_details)
     # else
-    return jsonify({'response': 'invalid credential'))
+    return jsonify({'response': 'invalid credential'})
