@@ -5,6 +5,7 @@ Flask: web app franework
 swagger: flasgger's web app testing and documen interface
 CORS: allows cross prigin resouece sharing across diff endpoints
 
+
 """
 from views import app_views
 from flask import Flask
@@ -26,10 +27,6 @@ with app.app_context():
 #@app.teardown_appcontext
 #def close_app():
 #    """Closes storage when app is closed"""
-
-@app.route('/api/v1', strict_slashes=False)
-def welcome():
-    return 'Welcome to Unlearn'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5001')
