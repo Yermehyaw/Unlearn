@@ -66,8 +66,8 @@ class Lessons:
         Args:
         quiz_name(str): name of the quiz
         topic_title(str): name of topic in which quiz is based on
-        student_id(str): id of student taking the quiz
         quiz_type(str): type of quiz questions i.e mcq or t/f
+        student_id(str): id of student taking the quiz
 
         Attributes:
         quiz_id(str): unique id of a quiz
@@ -83,8 +83,8 @@ class Lessons:
                 self,
                 quiz_name,
                 topic_title,
+                quiz_type=None,
                 student_id='',
-                quiz_type=None
         ):
             """Class initializer"""
             self.quiz_id = 'quiz_' + str(uuid4().int)
