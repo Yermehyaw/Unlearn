@@ -16,9 +16,17 @@ class FileStorage:
 
     def all(self):
         """Loads all objects from staorge"""
+        return FileStorage.__objects
 
     def new(self, obj):
-        """Adds new object to storage dict i.e __objects"""
+        """Adds new object to storage dict i.e __objects awaiting commit
+        to json file
+        """
+        FileStorage.__objects.update(
+                {obj.to_dict()['__class__'] + 
+                    '.' + 
+                    obj.id: obj}
+        )
 
     def save(self):
         """Commits new objects in __objects to json storage i.e unlearn_storage.json"""
