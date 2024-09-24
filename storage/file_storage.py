@@ -49,8 +49,7 @@ class FileStorage:
 
         classes = {
             'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions,
-            'Quiz': '', 'Result': Result, 'Students': Students,
-            'Topics': Topics
+            'Result': Result, 'Students': Students, 'Topics': Topics
         }
         try:
             temp = {}
