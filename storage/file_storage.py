@@ -23,13 +23,14 @@ class FileStorage:
         to json file
         """
         FileStorage.__objects.update(
-                {obj.to_dict()['__class__'] + 
-                    '.' + 
-                    obj.id: obj}
+                {obj.to_dict()['__class__']
+                 + '.'
+                 +  obj.id: obj}
         )
 
     def save(self):
-        """Commits new objects in __objects to json storage i.e unlearn_storage.json"""
+        """Commits new objects in __objects to json storage
+        i.e unlearn_storage.json"""
         with open(FileStorage.__file_path, 'w') as f:
             temp = {}
             temp.update(FileStorage.__objects)
@@ -39,4 +40,28 @@ class FileStorage:
 
     def reload(self):
         """Loads committed objects from json storage"""
+        from models.courses import Courses
+        from models.lessons import Lessons
+        from models.questions import Questions
+        from models.result import Result
+        from models.students import Students
+        from models.topics import Topics
 
+        classes = {
+            'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions,
+            'Quiz': '', 'Result': Result, 'Students': Students,
+            'Topics': Topics
+        }
+        try:
+            temp = {}
+            with open(FileStorage.__file_path, 'r') as f:
+                temp = json.load(f)
+
+            for key, value in temp.items():
+                all_objs = self.load_all()  # all_objs auto updates __objects
+                all_objs[key] = classes[value['__class__']](**value)
+                # **value inits all the saved obj attr to their respective keys
+                # e.g Question.
+
+        except FileNotFoundError:
+            pass
