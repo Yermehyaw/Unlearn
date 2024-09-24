@@ -8,6 +8,7 @@ unittest: create unittests for python scripts
 """
 from models.lessons import Lessons
 import unittest
+from models.questions import Questions
 
 
 class TestLessons(unittest.TestCase):
@@ -50,3 +51,56 @@ class TestLessons(unittest.TestCase):
         self.assertEqual(quiz.topic_title, 'enzymes')
 
         self.assertEqual(quiz.quiz_name, 'enzyme_concepts')
+
+    def test_get_questions(self):
+        """Test get_questions() method"""
+        new_lesson = Lessons(  # setUp() van be used
+            'learn carbohydrates',
+            'this is how to easily learn carbohydrates',
+            'helping students learn carbohydrates'
+        )
+        quiz = new_lesson.Quiz('enzyme_concepts', 'enzymes', 'mcq')
+        qs = quiz.get_questions('student_12345')
+
+        if not isinstance(qs, list):
+            self.fail()
+
+        self.assertEqual(quiz.student_id, 'student_12345')
+
+    def test_result_gen(self):
+        """Test result_gen method which calls marker()"""
+        new_lesson = Lessons(  # setUp() van be used
+            'learn carbohydrates',
+            'this is how to easily learn carbohydrates',
+            'helping students learn carbohydrates'
+        )
+        quiz = new_lesson.Quiz('enzyme_concepts', 'enzymes', 'mcq')
+
+        q1 = Questions('Are sugars sweet?', 't/f')
+
+        q2 = Questions('Are carbohydrates sweet', 't/f')
+
+        self.assertEqual(len(quiz.marked_questions), 0)
+
+        gen_questions = [q1, q2]
+        result = quiz.result_gen(gen_questions)  # marks wuestion objs attempted or not
+        self.assertEqual(len(quiz.marked_questions), 2)
+        # assert that questions gen before result_gen() is called equals questions marked after result_gen() is called
+        self.assertEqual(quiz.questions, quiz.marked_questions)
+
+        q1.selected_option = q1.option_selection['True']
+        q1.correct_option = q1.option_selection['True']
+
+        q2.selected_option = q2.option_selection['True']
+        q2.correct_option = q1.option_selection['False']
+        result = quiz.result_gen(gen_questions)  # gen a new result after attempting the questions
+
+        self.assertEqual(result.score, 1)
+        self.assertEqual(result.total_questions, 2)
+        self.assertEqual(result.percentage_score, '50.00%')
+        self.assertEqual(result.status, 'Passed')
+
+        self.assertEqual(len(result.questions_answered_correct), 1)
+        self.assertEqual(len(result.questions_answered_correct), 1)
+
+        # more assert here: one answered wrong, one unanswered; both answered correct; both answeted wrong etc

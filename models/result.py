@@ -22,8 +22,8 @@ class Result:
     quiz_id(str): unique id of the quiz which the result obj was generated for
     quiz_name(str): name of the quiz which has this result
     student_id(str): id of the student whose result it is
-    _score(int): percentage score on the quiz in int
-    percentage_score(str): percentage score on the quiz as str
+    _score(int): score on the quiz
+    _percentage_score(int): percentage score on the quiz
     total_questions(int): total no of questions attempted/marked by marker()
     status(str): passed or failed
     questions_answered_correct(list): list of Question obj answer\
@@ -52,6 +52,17 @@ d wrongly
         questions = quiz_obj.marked_questions
         self.total_questions = len(questions)
 
+        if self.total_questions == 0:
+            self._percentage_score = 0.00
+        else:
+            float_score = float(self._score) / self.total_questions * 100
+            self._percentage_score = round(float_score, 2)
+
+        if self._percentage_score >= 50:
+            self.status = 'Passed'
+        elif self._percentage_score <= 49:
+            self.status = 'Failed'
+
         for q in questions:
             if q.status == 'correct':
                 self._score += 1
@@ -60,17 +71,6 @@ d wrongly
                 self.questions_answered_wrong.append(q)
             elif len(q.status) == 0:
                 self.questions_unattempted.append(q)
-
-        if self._score >= 50:
-            self.status = 'Passed'
-        elif self._score <= 49:
-            self.status = 'Failed'
-
-        if self.total_questions == 0:
-            self.percentage_score = '0.00%'
-        else:
-            float_score = float(self._score/total_questions) * 100
-            self.percentage_score = str(round(float_score, 2)) + '%'
 
     @property
     def score(self):
@@ -86,12 +86,18 @@ d wrongly
         # else:
         self._score = new_score
         if self.total_questions == 0:
-            self.percentage_score = '0.00%'
+            self._percentage_score = 0.00
         else:
-            float_score = float(self._score/total_questions) * 100
-            self.percentage_score = str(round(float_score, 2)) + '%'
+            float_score = float(self._score) / self.total_questions * 100
+            self._percentage_score = round(float_score, 2)
 
-        if self._score >= 50:
+        if self._percentage_score >= 50:
             self.status = 'Passed'
-        elif self._score <= 49:
+        elif self._percentage_score <= 49:
             self.status = 'Failed'
+
+    @property
+    def percentage_score(self):
+        """Returns percentage_score as a string with the % sign"""
+        str_p_score = str(self._percentage_score) + '%'
+        return str_p_score

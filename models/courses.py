@@ -25,13 +25,14 @@ class Courses:
     course_code(int): unique course code
     course_title(str): name/title of course
     course_desc(str): course details/description
+    _no_topics(int): no of topics in the course
+    _all_topics(list): list of all topic objs in course
 
     """
-    no_topics = 0
-    all_topics = []  # Change to obj attr(?). each course all_topics differs
-
     def __init__(self, course_code, course_title=None, course_desc=None):
         """Course object initializer"""
+        self._no_topics = 0
+        self._all_topics = []
         if not isinstance(course_code, int):
             raise TypeError('Invalid course code')
         else:
@@ -55,20 +56,20 @@ class Courses:
     def get_topics_no(self):
         """Returns the no of topics in each course"""
         # retrieve no_topocs from db
-        return Courses.no_topics
+        return self._no_topics
 
     @property
     def get_all_topics_list(self):
         """Returns a list of all topics in the course"""
         # retrieve from db
-        return Courses.all_topics
+        return self._all_topics
 
     def add_topic(self, new_topic_title, new_cs_code=None):
         """Creates a new topic"""
         new_topic = Topics(new_topic_title, self.course_code)
 
-        Courses.no_topics += 1
+        self._no_topics += 1
 
-        Courses.all_topics.append(new_topic.topic_title)
+        self._all_topics.append(new_topic.topic_title)
 
         return new_topic
