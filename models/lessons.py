@@ -116,7 +116,7 @@ class Lessons:
             # call save() (?)
             return self.questions
 
-        def result_gen(user_attempts):
+        def result_gen(self, user_attempts):
             """
             Receives attempts on a quiz from a quiz session and creates a
             Result obj for updating a students progress
