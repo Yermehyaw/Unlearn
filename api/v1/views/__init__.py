@@ -17,3 +17,10 @@ app_views = Blueprint(
 )
 
 # Default url prefix is '/api/v1'
+
+from .index import *
+from .courses import *
+from .lessons import *
+from .quiz import *
+from .result import *
+from .topics import *

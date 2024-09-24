@@ -5,6 +5,7 @@ Flask: web app franework
 swagger: flasgger's web app testing and documen interface
 CORS: allows cross prigin resouece sharing across diff endpoints
 
+
 """
 from views import app_views
 from flask import Flask
@@ -17,7 +18,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.config.from_object(config.Config)  # configs not set yet
 swagger = Swagger(app)
 
-# cors activation
+# cors activation code
 
 with app.app_context():
     app.register_blueprint(app_views, url_prefix='/api/v1')
@@ -27,6 +28,5 @@ with app.app_context():
 #def close_app():
 #    """Closes storage when app is closed"""
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port='5001')

@@ -7,9 +7,15 @@ Modules Imported: app_views, jsonify
 app_views(instance): BLueprint instance
 jsonify(method): transform objects into JSON
 """
-from views import app_views
+from . import app_views
 from flask import jsonify
 
+
+@app_views.route('/', strict_slashes= False)
+def welcome():
+    """Welcones user to web app"""
+    txt = 'Welcome to Unlearn: Redefining the biochemical learning experience'
+    return jsonify(txt)
 
 @app_views.route('/login', strict_slashes=False)
 def login():
@@ -42,4 +48,4 @@ def profile(student_id):
     }
     return jsonify(student_details)
     # else
-    return jsonify({'response': 'invalid credential'))
+    return jsonify({'response': 'invalid credential'})
