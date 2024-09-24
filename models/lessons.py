@@ -5,9 +5,19 @@ Mini tutorial lessons with quiz for each topic
 Modules Imported:
 uuid4(method) - generate unique ids
 Questions(class) - question bank
+Result(cls)
+marker(func): marks user attempts of gen questions
 
 """
 from uuid import uuid4
+if __name__ == '__main__':
+    from questions import Questions
+    from result import Result
+    from marker import marker
+else:
+    from .questions import Questions
+    from .result import Result
+    from .marker import marker
 
 
 class Lessons:
@@ -46,15 +56,6 @@ class Lessons:
                 raise TypeError('Invalid lesson description')
             else:
                 self.lesson_desc = lesson_desc
-
-    if __name__ == '__main__':
-        from questions import Questions
-        from result import Result
-        from marker import marker
-    else:
-        from .questions import Questions
-        from .result import Result
-        from .marker import marker
 
 
     class Quiz:
