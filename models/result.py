@@ -53,9 +53,9 @@ d wrongly
         self.total_questions = len(questions)
 
         if self.total_questions == 0:
-            self._percentage_score = 0
+            self._percentage_score = 0.00
         else:
-            float_score = float(self._score/self.total_questions) * 100
+            float_score = float(self._score) / self.total_questions * 100
             self._percentage_score = round(float_score, 2)
 
         if self._percentage_score >= 50:
@@ -86,9 +86,9 @@ d wrongly
         # else:
         self._score = new_score
         if self.total_questions == 0:
-            self._percentage_score = 0
+            self._percentage_score = 0.00
         else:
-            float_score = float(self._score/self.total_questions) * 100
+            float_score = float(self._score) / self.total_questions * 100
             self._percentage_score = round(float_score, 2)
 
         if self._percentage_score >= 50:
