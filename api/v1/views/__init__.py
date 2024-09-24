@@ -18,9 +18,9 @@ app_views = Blueprint(
 
 # Default url prefix is '/api/v1'
 
-from api.v1.views.index import *
-from api.v1.courses import *
-from api.v1.lessons import *
-from api.v1.quiz import *
-from api.v1.result import *
-from api.v1.topics import *
+from index import *
+from courses import *
+from lessons import *
+from quiz import *
+from result import *
+from topics import *
