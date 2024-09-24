@@ -64,8 +64,9 @@ class Lessons:
         a dynamic quiz session
 
         Args:
-        quiz_name(str): name of tge quiz
+        quiz_name(str): name of the quiz
         topic_title(str): name of topic in which quiz is based on
+        student_id(str): id of student taking the quiz
         quiz_type(str): type of quiz questions i.e mcq or t/f
 
         Attributes:
@@ -73,13 +74,18 @@ class Lessons:
         quiz_name(str): name of quiz
         topic_title(str): name of topic in which quiz is based on
         quiz_type(str): type of quiz e.g MCQ, T/F
-        student_id(str): id of student taking the quiz
         questions(list): list of generated questions for the quiz
         marked_questions(list): answered questions marked
         'corect' or 'wrong' by updating their status attr
 
         """
-        def __init__(self, quiz_name, topic_title, quiz_type=None):
+        def __init__(
+                self,
+                quiz_name,
+                topic_title,
+                student_id='',
+                quiz_type=None
+        ):
             """Class initializer"""
             self.quiz_id = 'quiz_' + str(uuid4().int)
 
@@ -99,7 +105,7 @@ class Lessons:
             else:
                 self.quiz_type = quiz_type
 
-            self.student_id = ''
+            self.student_id = student_id
             self.questions = []
             self.marked_questions = []
 
