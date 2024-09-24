@@ -10,7 +10,7 @@ make_response: maje http responses
 Courses: Courses class
 
 """
-from views import api_views
+from . import api_views
 from models.courses import Courses
 from flask import jsonify
 from flask import make_response
@@ -36,7 +36,7 @@ def spec_courses(course_code):
         # if valid/existing course code
         # retrieve from storage and init to req_course
         course_details = {
-            'course code': 'req_course.course_code'
+            'course code': 'req_course.course_code',
             'course title': 'req_course.course_title',
             'description': 'req_course.course_desc',
             'no of topics': 'req_course.get_topics_no',
