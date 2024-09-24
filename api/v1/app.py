@@ -17,7 +17,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.config.from_object(config.Config)  # configs not set yet
 swagger = Swagger(app)
 
-# cors activation
+# cors activation code
 
 with app.app_context():
     app.register_blueprint(app_views, url_prefix='/api/v1')
