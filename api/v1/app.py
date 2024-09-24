@@ -6,7 +6,7 @@ swagger: flasgger's web app testing and documen interface
 CORS: allows cross prigin resouece sharing across diff endpoints
 
 """
-from views import app_views
+from api.v1.views import app_views
 from flask import Flask
 from flask_cors import CORS
 from flasgger import Swagger
