@@ -92,7 +92,7 @@ class Questions:
 
         self.selected_option = []
 
-        self. = []
+        self.correct_option = []
 
         self.status = ''
 
