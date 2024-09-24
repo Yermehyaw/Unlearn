@@ -7,7 +7,7 @@ Modules Imported: app_views, jsonify
 app_views(instance): BLueprint instance
 jsonify(method): transform objects into JSON
 """
-from api.v1.views import app_views
+from . import app_views
 from flask import jsonify
 
 
