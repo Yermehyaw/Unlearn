@@ -14,11 +14,11 @@ class FileStorage:
     __file_path = 'unlearn_storage.json'
     __objects = {}
 
-    def all(self):
+    def load_all(self):
         """Loads all objects from staorge"""
         return FileStorage.__objects
 
-    def new(self, obj):
+    def add(self, obj):
         """Adds new object to storage dict i.e __objects awaiting commit
         to json file
         """
@@ -30,6 +30,12 @@ class FileStorage:
 
     def save(self):
         """Commits new objects in __objects to json storage i.e unlearn_storage.json"""
+        with open(FileStorage.__file_path, 'w') as f:
+            temp = {}
+            temp.update(FileStorage.__objects)
+            for key, value in temp.items():
+                temp[key] = value.to_dict()
+            json.dump(temp, f)
 
     def reload(self):
         """Loads committed objects from json storage"""
