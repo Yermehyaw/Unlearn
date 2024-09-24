@@ -27,6 +27,9 @@ with app.app_context():
 #def close_app():
 #    """Closes storage when app is closed"""
 
+@app.route('/api/v1', strict_slashes=False)
+def welcome():
+    return 'Welcome to Unlearn'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5001')
