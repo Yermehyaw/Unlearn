@@ -69,7 +69,7 @@ d wrongly
         if self.total_questions == 0:
             self.percentage_score = '0.00%'
         else:
-            float_score = float(self._score/total_questions) * 100
+            float_score = float(self._score/self.total_questions) * 100
             self.percentage_score = str(round(float_score, 2)) + '%'
 
     @property
@@ -88,7 +88,7 @@ d wrongly
         if self.total_questions == 0:
             self.percentage_score = '0.00%'
         else:
-            float_score = float(self._score/total_questions) * 100
+            float_score = float(self._score/self.total_questions) * 100
             self.percentage_score = str(round(float_score, 2)) + '%'
 
         if self._score >= 50:
