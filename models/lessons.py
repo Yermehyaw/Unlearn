@@ -50,11 +50,11 @@ class Lessons:
     if __name__ == '__main__':
         from questions import Questions
         from result import Result
-        import marker
+        from marker import marker
     else:
         from .questions import Questions
         from .result import Result
-        from models import marker
+        from .marker import marker
 
 
     class Quiz:
