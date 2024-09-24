@@ -32,8 +32,7 @@ def lesson_details(lesson_title):
         }
         return jsonify(lesson_details)
         # else:
-            # resp = jsonify({'response': 'lesson not found'})
-            # return make_response(resp, 400)
+            # return jsonify({})
 
     elif request.method == 'POST':
         if 1:  # lesson already exists in storage
