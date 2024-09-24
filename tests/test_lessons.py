@@ -91,6 +91,7 @@ class TestLessons(unittest.TestCase):
 
         q2.selected_option = q2.option_selection['True']
         q2.correct_option = q1.option_selection['False']
+        result = quiz.result_gen(gen_questions)  # gen a new result after attempting the questions
 
         self.assertEqual(result.score, 1)
         self.assertEqual(result.total_questions, 2)
