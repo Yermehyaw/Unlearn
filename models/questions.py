@@ -29,9 +29,9 @@ class Questions:
     option_type(str): type of option the question has i.e either t/f or mcq
     option_selection(dict): selectable options each with an
     individual option_id and option_text
-    selected_option_id(str): option_id of selected option
+    selected_option(list): option_str and option_id of selected option
     to be derived from option_selection e.g option_selection['A'][1]
-    correct_option(list): option_id of corrrect option
+    (list): option_str and option_id of corrrect option
     status(str): status of question attempt by student i.e 'correct' or 'wrong'
 
     """
@@ -90,9 +90,9 @@ class Questions:
             elif option_type == 'mcq':
                 self.option_selection = {}
 
-        self.selected_option = ''
+        self.selected_option = []
 
-        self.correct_option = ''
+        self.correct_option = []
 
         self.status = ''
 
@@ -109,7 +109,7 @@ class Questions:
                 pretty_option = {
                     'option_type': 'Multiple Choice Question',
                     'options': ['No option added, use edit_question() to add'],
-                    'correct_option': ''
+                    'correct_option': self.correct_option
                 }
             else:
                 pretty_option = {
@@ -129,7 +129,7 @@ class Questions:
                 pretty_option = {
                     'option_type': 'True or False Question',
                     'options': ['No option added, use edit_question() to add'],
-                    'correct_option': ''
+                    'correct_option': self.correct_option
                 }
             else:
                 pretty_option = {

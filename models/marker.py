@@ -29,10 +29,12 @@ def marker(user_attempts):
         raise TypeError('Only Questions obj are allowed')
 
     for question in user_attempts:
-        if len(question.selected_option_id) > 0:
-            if question.selected_option_id == self.correct_option_id:
+        if len(question.selected_option) > 0:
+            selected_option_id = question.selected_option[1]
+            correct_option_id = question.correct_option[1]
+            if selected_option_id == correct_option_id:
                 question.status = 'correct'
-            elif question.selected_option_id != self.correct_option_id:
+            elif selected_option_id != correct_option_id:
                 question.status = 'wrong'
         else:
             question.status = 'unanswered'

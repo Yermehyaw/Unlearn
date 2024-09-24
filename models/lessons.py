@@ -5,9 +5,19 @@ Mini tutorial lessons with quiz for each topic
 Modules Imported:
 uuid4(method) - generate unique ids
 Questions(class) - question bank
+Result(cls)
+marker(func): marks user attempts of gen questions
 
 """
 from uuid import uuid4
+if __name__ == '__main__':
+    from questions import Questions
+    from result import Result
+    from marker import marker
+else:
+    from .questions import Questions
+    from .result import Result
+    from .marker import marker
 
 
 class Lessons:
@@ -47,15 +57,6 @@ class Lessons:
             else:
                 self.lesson_desc = lesson_desc
 
-    if __name__ == '__main__':
-        from questions import Questions
-        from result import Result
-        import marker
-    else:
-        from .questions import Questions
-        from .result import Result
-        from models import marker
-
 
     class Quiz:
         """
@@ -63,22 +64,28 @@ class Lessons:
         a dynamic quiz session
 
         Args:
-        quiz_name(str): name of tge quiz
+        quiz_name(str): name of the quiz
         topic_title(str): name of topic in which quiz is based on
         quiz_type(str): type of quiz questions i.e mcq or t/f
+        student_id(str): id of student taking the quiz
 
         Attributes:
         quiz_id(str): unique id of a quiz
         quiz_name(str): name of quiz
         topic_title(str): name of topic in which quiz is based on
         quiz_type(str): type of quiz e.g MCQ, T/F
-        student_id(str): id of student undertaking the quiz
         questions(list): list of generated questions for the quiz
         marked_questions(list): answered questions marked
         'corect' or 'wrong' by updating their status attr
 
         """
-        def __init__(self, quiz_name, topic_title, quiz_type=None):
+        def __init__(
+                self,
+                quiz_name,
+                topic_title,
+                quiz_type=None,
+                student_id='',
+        ):
             """Class initializer"""
             self.quiz_id = 'quiz_' + str(uuid4().int)
 
@@ -98,7 +105,7 @@ class Lessons:
             else:
                 self.quiz_type = quiz_type
 
-            self.student_id = ''
+            self.student_id = student_id
             self.questions = []
             self.marked_questions = []
 
@@ -116,7 +123,7 @@ class Lessons:
             # call save() (?)
             return self.questions
 
-        def result_gen(user_attempts):
+        def result_gen(self, user_attempts):
             """
             Receives attempts on a quiz from a quiz session and creates a
             Result obj for updating a students progress
