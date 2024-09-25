@@ -33,13 +33,14 @@ class UnlearnConsole(cmd.Cmd):
     Unlearn console interface
 
     """
+    if sys.__stdin__.isatty():
+        prompt = '(unlearn) '
+
     def unlearn_home(self):
         """
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
         """
-        if sys.__stdin__.isatty():
-            prompt = '(unlearn) '
 
     def do_L(self):
         """Logs in a user"""
