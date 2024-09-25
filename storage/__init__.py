@@ -3,7 +3,7 @@
 Package initializer for storage
 
 """
-from file_storage impory FileStorage
+from file_storage import FileStorage
 
 
 storage = FileStorage()
