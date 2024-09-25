@@ -47,8 +47,11 @@ class FileStorage:
         from models.students import Students
         from models.topics import Topics
 
+        #Just for time sake, Quiz class should be  separated from Lessons
+        l = Lessons('', '')
+
         classes = {
-            'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions,
+                'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions, 'Quiz': l.Quiz,
             'Result': Result, 'Students': Students, 'Topics': Topics
         }
         try:
