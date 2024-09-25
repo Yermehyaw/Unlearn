@@ -79,6 +79,7 @@ class UnlearnConsole(cmd.Cmd):
             inquirer.Text('password', message='Password')
         ]
         student_resp = inquirer.prompt(arg_fetch)
+        self.found_student = None  # just a placeholder
 
         if not student_resp['username'] or not student_resp['password']:
             print('Empty username or password not allowed')
@@ -91,12 +92,20 @@ class UnlearnConsole(cmd.Cmd):
             if (key.split('.'))[0] == 'Students':
                 student_objs.append(values)
 
+        if len(student_objs) == 0:
+            print('Incorrect login details entered')
+            return
+
         # Search for the spec student obj with tge same username
         for student in student_objs:
             if student.username == student_resp['username']:
                 self.found_student = student
                 print('Logged In Successfully!')
                 return
+
+        if not self.found_student:
+            print('Incorrect login details entered')
+            return
 
     def do_signup(self, comd):
         """Signs up a new user"""
