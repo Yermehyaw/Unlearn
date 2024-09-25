@@ -15,13 +15,15 @@ yaspin(obj): context manager for progress indicator and animations
 """
 import cmd
 from models.courses import Courses
+from rich.console import Console
 import inquirer
 from models.lessons import Lessons
 import pyfiglet
 from models.questions import Questions
 from models.result import Result
-import rich
 from models.students import Students
+from rich.table import Table
+from rich.theme import Theme
 from storage import storage
 import sys
 from models.topics import Topics
@@ -36,28 +38,28 @@ class UnlearnConsole(cmd.Cmd):
     if sys.__stdin__.isatty():
         prompt = '(unlearn) '
 
-    unlearn_theme = rich.theme.Theme(
+    unlearn_theme = Theme(
         {
             "info": "bold cyan", "text": "bright_blue",
             "bg": "thistle1",  "warning": "magenta",
             "danger": "bold red"
         }
     )
-    console = rich.Console(theme=unlearn_theme)
+    console = Console(theme=unlearn_theme)
 
-    def unlearn_home(self):
+    def preloop(self):
         """
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
         """
-        unlearn_table = rich.table.Table(
+        unlearn_table = Table(
             title='Unlearn',
             style='black on grey66',
             header_style='white on dark_blue'
         )
-        unlearn_table.add_column("Unlearn", justify='center')
-        unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text', justify='center')
-        console.print(unlearn_table)
+        unlearn_table.add_column("Unlearn")
+        unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
+        UnlearnConsole.console.print(unlearn_table)
 
     def do_L(self):
         """Logs in a user"""
