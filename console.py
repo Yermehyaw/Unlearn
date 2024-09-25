@@ -16,9 +16,9 @@ yaspin(obj): context manager for progress indicator and animations
 import cmd
 from models.courses import Courses
 from rich.console import Console
+from  pyfiglet import Figlet
 import inquirer
 from models.lessons import Lessons
-import pyfiglet
 from models.questions import Questions
 from models.result import Result
 from models.students import Students
@@ -49,6 +49,9 @@ class UnlearnConsole(cmd.Cmd):
 
     def preloop(self):
         """App load up"""
+        f = Figlet(font='slant')
+        print(f.renderText('Unlearn'))
+        print('Redefining the biochemical experience. . ..' + '\n\n')
         storage.reload()
         self.do_home()
 
@@ -65,7 +68,7 @@ class UnlearnConsole(cmd.Cmd):
         self.unlearn_table.add_column("Unlearn")
         self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
         self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='bg')
-        self unlearn_table.add_row('#1 Biochemistry Quiz App')
+        self.unlearn_table.add_row('#1 Biochemistry Quiz App')
         UnlearnConsole.console.print(self.unlearn_table)
 
     def do_login(self, comd):
