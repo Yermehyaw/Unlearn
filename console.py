@@ -6,7 +6,7 @@ Imports:
 cmd: command line interface in python
 sys: access system
 Courses, Lessons, Questions, Result, Students, Topics: custom data model clss
-inquirer(obj): interface fore receiving inputs frm user
+inquirer(obj): interface for receiving inputs frm user
 pyfiglet(obj): print text in ascii art
 rich(cls): Format console outputs as rich texts
 storage(obj): instance of storage i.e FileStorage or DB_Storage
@@ -73,19 +73,42 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_login(self, comd):
         """Logs in a user"""
+        # input validation code for later
+        arg_fetch = [
+            inquirer.Text('username', message='Username:'),
+            inquirer.Text('password', messgae='Password')
+        ]
+        student_resp = inquirer.prompt(arg_fetch)
 
-    def do_proceed(self, comd):
-        """Proceeds to finish login/user authentication"""
+        if not student_resp['username'] or not student_resp['password']:
+            print('Empty username or password not allowed')
+            return
+
+        # search for all Students obj in storage
+        objs_in_storage = storage.load_all()
+        for key, value in objs_in_storage:
+            student_objs = []
+            if (key.split('.'))[0] == 'Students':
+                student_objs.append(values)
+
+        # Search for the spec student obj with tge same username
+        for student in student_objs:
+            if student.username == student_resp['username']:
+                self.found_student = student
+                print('Logged In Successfully!')
+                return
 
     def do_signup(self, comd):
         """Signs up a new user"""
-
-    def do_finish(self, comd):
-        """Finish user sign uo/ create new student"""
+        # Search for any existig student with the sane username
+        for student in student_objs:
+            if student.username == student_resp['username']:
+                print('User exists already')
+                return
 
     def do_start(self, comd):
         """Creates a new quiz session"""
-        self.do_lesson()
+        self.lesson()
         print('')
 
     def do_A(self):
@@ -121,7 +144,7 @@ class UnlearnConsole(cmd.Cmd):
     def do_submit(self, comd):
         """Submit attempted questions"""
 
-    def do_lesson(self, comd):
+    def lesson(self, comd):
         """mini-lesson before a quiz session"""
 
     def do_continue(self, comd):
