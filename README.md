@@ -45,24 +45,58 @@ For more indepth documentation/details, kindly visit the [wiki]()
 ### APIs
 The Unlearn web app utilizes a RESTFul API to provide information on the internals of the app to outsiders (especilaly fellow developers), who would be interested in utlizing this information i n their personal research or other web activities. If this sounds like you, then please continue reading.
 #### Using the APIs
+- api/v1/login
+POST: Take the username and password hash to the authentication/validation result
+- /api/v1/profile
+GET: With a student_id, returns a dict of the details of the student
+Else: {response:  invalid credential}
+- /api/v1/status
+GET: Login status [i.e logged in Vs not logged in]
+- /api/courses
+GET: Returns a list of all available courses
+- /api/courses/<course_code>
+GET: Return a list of topics in the course
+POST: Creates a new course
+- /api/topics/
+GET:
+Returns a list of all available topics
+- /api/topics/<course_title>
+GET:
+With a valid course title entered, returns a list of all the topics of the specified course ELSE;
+Returns a list of all available topics
+POST:
+Creates a new topic
+- /api/lessons/<lesson_title>
+GET:
+With valid lesson title, return a dict comprising lesson title,  lesson content lesson description (and lesson_matr [coming soon])
+Fail: An empty dict
+POST:
+With lesson content and description, Create a new lesson else;
+Fails and return a 400 error
+/- api/quiz/<course_title>
+GET:
+Returns a dict of all questions of a specified course ELSE;
+Returns an empty dict
+- /api/quiz/<course_title>/<topic_title>
+GET:
+Returns a dict of questions in the specified course and topic else
+An empty dict
+- /api/result/<quiz_id>/<student_id>
+GET:
+With valid student id, return the latest result of a student on a specified quiz id Else
+Fail: An empty dict
+- /api/result/<topic_title>/<quiz_id>/<student_id>
+GET:
+With a valid topic_title, quiz_id and student_id, return the latest result of a student on a specified quiz on a specific topic
+Fail: An empty dict
 
 
 # Contributing
-
+(@yermehyaw) Akor Jeremiah <omoakor@gmail.com>
 
 
 # Related Projects
 
 
 # Licencing
-
-
-
-Project Name
-Introduction
-Must include link to your deployed site, final project blog article, author(s) LinkedIn
-Installation
-Usage
-Contributing
-Related projects
-Licencing
+MIT licience
