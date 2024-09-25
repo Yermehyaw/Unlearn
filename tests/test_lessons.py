@@ -101,7 +101,7 @@ class TestLessons(unittest.TestCase):
 
         self.assertEqual(result.score, 1)
         self.assertEqual(result.total_questions, 2)
-        self.assertEqual(result.percentage_score, '50.00%')
+        self.assertEqual(result.percentage_score, '50.0%')
         self.assertEqual(result.status, 'Passed')
 
         self.assertEqual(len(result.questions_answered_correct), 1)
