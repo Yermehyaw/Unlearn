@@ -82,11 +82,15 @@ class TestLessons(unittest.TestCase):
 
         self.assertEqual(len(quiz.marked_questions), 0)
 
-        gen_questions = [q1, q2]
-        result = quiz.result_gen(gen_questions)  # marks wuestion objs attempted or not
-        self.assertEqual(len(quiz.marked_questions), 2)
-        # assert that questions gen before result_gen() is called equals questions marked after result_gen() is called
+        # assert both are equal before calling redult_gen()
         self.assertEqual(quiz.questions, quiz.marked_questions)
+
+        gen_questions = [q1, q2]
+        result = quiz.result_gen(gen_questions)  # marks question objs
+        self.assertEqual(len(quiz.marked_questions), 2)
+
+        # assert both are unequal after calling result_gen()
+        self.assertNotEqual(quiz.questions, quiz.marked_questions)
 
         q1.selected_option = q1.option_selection['True']
         q1.correct_option = q1.option_selection['True']
