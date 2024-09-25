@@ -65,8 +65,8 @@ d wrongly
         if self.total_questions == 0:
             self._percentage_score = 0.00
         else:
-            float_score = float(self._score) / self.total_questions * 100
-            self._percentage_score = round(float_score, 2)
+            float_score = (float(self._score) / self.total_questions) * 100
+            self._percentage_score = round(float_score, 1)
 
         if self._percentage_score >= 50:
             self.status = 'Passed'
@@ -89,8 +89,8 @@ d wrongly
         if self.total_questions == 0:
             self._percentage_score = 0.00
         else:
-            float_score = float(self._score) / self.total_questions * 100
-            self._percentage_score = round(float_score, 2)
+            float_score = (float(self._score) / self.total_questions) * 100
+            self._percentage_score = round(float_score, 1)
 
         if self._percentage_score >= 50:
             self.status = 'Passed'
