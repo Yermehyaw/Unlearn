@@ -52,6 +52,13 @@ class Courses:
             else:
                 self.course_desc = course_desc
 
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Courses'})
+        return dict
+
     @property
     def get_topics_no(self):
         """Returns the no of topics in each course"""
@@ -73,10 +80,3 @@ class Courses:
         self._all_topics.append(new_topic.topic_title)
 
         return new_topic
-
-    def to_dict(self):
-        """Repeesent instance as a dict for json storage"""
-        dict = {}
-        dict.update(self.__dict__)
-        dict.update({'__class__': 'Courses'})
-        return dict
