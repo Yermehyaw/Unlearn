@@ -227,7 +227,7 @@ class Questions:
                 pass
 
 
-    def useful_in(self, get_ids=Truen):
+    def useful_in(self, get_ids=True):
         """
         Get the list of topic ids or names in which the question can be used in
         """
