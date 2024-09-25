@@ -47,12 +47,11 @@ class FileStorage:
         from models.students import Students
         from models.topics import Topics
 
-        #Just for time sake, Quiz class should be  separated from Lessons
-        l = Lessons('', '')
 
         classes = {
-                'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions, 'Quiz': l.Quiz,
-            'Result': Result, 'Students': Students, 'Topics': Topics
+                'Courses': Courses, 'Lessons': Lessons, 'Questions': Questions,
+            'Quiz': Lessons.Quiz, 'Result': Result, 'Students': Students,
+            'Topics': Topics
         }
         try:
             temp = {}
@@ -63,7 +62,6 @@ class FileStorage:
                 all_objs = self.load_all()  # all_objs auto updates __objects
                 all_objs[key] = classes[value['__class__']](**value)
                 # **value inits all the saved obj attr to their respective keys
-                # e.g Question.
 
         except FileNotFoundError:
             pass
