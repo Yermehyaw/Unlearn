@@ -1,7 +1,7 @@
 # Unlearn
 
 Redefining the biochemical learning experience. . .
-![unlearn logo](https://)
+![unlearn logo](https://www.imghippo.com/i/keMyq1727286125.png)
 
 # Introduction
 ## Un. . . What?
