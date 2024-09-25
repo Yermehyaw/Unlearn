@@ -76,7 +76,7 @@ class UnlearnConsole(cmd.Cmd):
         # input validation code for later
         arg_fetch = [
             inquirer.Text('username', message='Username:'),
-            inquirer.Text('password', messgae='Password')
+            inquirer.Text('password', message='Password')
         ]
         student_resp = inquirer.prompt(arg_fetch)
 
