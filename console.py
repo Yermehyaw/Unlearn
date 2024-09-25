@@ -50,7 +50,7 @@ class UnlearnConsole(cmd.Cmd):
     def preloop(self):
         """App load up"""
         storage.reload()
-        do_home()
+        self.do_home()
 
     def do_home(self):
         """
@@ -82,7 +82,7 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_start(self, comd):
         """Creates a new quiz session"""
-        do_lesson()
+        self.do_lesson()
 
     def do_p(self, comd):  # is athe do_prefix necessary?
         """Navigate to previous question"""
