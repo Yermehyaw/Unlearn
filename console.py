@@ -36,11 +36,28 @@ class UnlearnConsole(cmd.Cmd):
     if sys.__stdin__.isatty():
         prompt = '(unlearn) '
 
+    unlearn_theme = rich.theme.Theme(
+        {
+            "info": "bold cyan", "text": "bright_blue",
+            "bg": "thistle1",  "warning": "magenta",
+            "danger": "bold red"
+        }
+    )
+    console = rich.Console(theme=unlearn_theme)
+
     def unlearn_home(self):
         """
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
         """
+        unlearn_table = rich.table.Table(
+            title='Unlearn',
+            style='black on grey66',
+            header_style='white on dark_blue'
+        )
+        unlearn_table.add_column("Unlearn", justify='center')
+        unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text', justify='center')
+        console.print(unlearn_table)
 
     def do_L(self):
         """Logs in a user"""
