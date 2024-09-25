@@ -54,7 +54,7 @@ class TestLessons(unittest.TestCase):
 
     def test_get_questions(self):
         """Test get_questions() method"""
-        new_lesson = Lessons(  # setUp() van be used
+        new_lesson = Lessons(  # setUp() can be used
             'learn carbohydrates',
             'this is how to easily learn carbohydrates',
             'helping students learn carbohydrates'
@@ -69,7 +69,7 @@ class TestLessons(unittest.TestCase):
 
     def test_result_gen(self):
         """Test result_gen method which calls marker()"""
-        new_lesson = Lessons(  # setUp() van be used
+        new_lesson = Lessons(  # setUp() can be used
             'learn carbohydrates',
             'this is how to easily learn carbohydrates',
             'helping students learn carbohydrates'
@@ -82,22 +82,26 @@ class TestLessons(unittest.TestCase):
 
         self.assertEqual(len(quiz.marked_questions), 0)
 
-        gen_questions = [q1, q2]
-        result = quiz.result_gen(gen_questions)  # marks wuestion objs attempted or not
-        self.assertEqual(len(quiz.marked_questions), 2)
-        # assert that questions gen before result_gen() is called equals questions marked after result_gen() is called
+        # assert both are equal before calling redult_gen()
         self.assertEqual(quiz.questions, quiz.marked_questions)
 
-        q1.selected_option = q1.option_selection['True']
-        q1.correct_option = q1.option_selection['True']
+        gen_questions = [q1, q2]
+        result = quiz.result_gen(gen_questions)  # marks question objs
+        self.assertEqual(len(quiz.marked_questions), 2)
 
-        q2.selected_option = q2.option_selection['True']
-        q2.correct_option = q1.option_selection['False']
+        # assert both are unequal after calling result_gen()
+        self.assertNotEqual(quiz.questions, quiz.marked_questions)
+
+        q1.selected_option = q1.option_selection['T']
+        q1.correct_option = q1.option_selection['T']
+
+        q2.selected_option = q2.option_selection['T']
+        q2.correct_option = q1.option_selection['F']
         result = quiz.result_gen(gen_questions)  # gen a new result after attempting the questions
 
         self.assertEqual(result.score, 1)
         self.assertEqual(result.total_questions, 2)
-        self.assertEqual(result.percentage_score, '50.00%')
+        self.assertEqual(result.percentage_score, '50.0%')
         self.assertEqual(result.status, 'Passed')
 
         self.assertEqual(len(result.questions_answered_correct), 1)

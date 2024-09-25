@@ -107,7 +107,7 @@ class Lessons:
 
             self.student_id = student_id
             self.questions = []
-            self.marked_questions = []
+            self.marked_questions = self.questions
 
         def get_questions(self, student_id=''):
             """
@@ -118,8 +118,7 @@ class Lessons:
 
             """
             self.student_id = student_id
-            self.questions = []
-            # in a loop append question obj from storage to the list
+            # in a loop append question obj from storage to self.questions list
             # call save() (?)
             return self.questions
 
