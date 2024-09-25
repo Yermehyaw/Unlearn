@@ -120,3 +120,10 @@ class Topics():
         self.questions.append(new_question)
         # Save to storage
         return new_question
+
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Topics'})
+        return dict

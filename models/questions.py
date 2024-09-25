@@ -257,12 +257,10 @@ class Questions:
         if topic_name not in self._useful_in_topic_name:
             self._useful_in_topic_name.append(topic_name)
 
-    def reload(self):
-        """Reload question obj attributes from storage"""
-        # reload _useful_in_topic_name
-        # reload _useful_in_topic_id
-        pass  # remove when method is defined
 
-    def save(self):
-        """Save object to storage"""
-            # Coming soon. . .
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Questions'})
+        return dict

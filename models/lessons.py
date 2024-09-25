@@ -57,6 +57,13 @@ class Lessons:
             else:
                 self.lesson_desc = lesson_desc
 
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Lessons'})
+        return dict
+
 
     class Quiz:
         """
@@ -136,3 +143,10 @@ class Lessons:
             # call save() (?)
             new_result = Result(self, self.student_id)
             return new_result
+
+        def to_dict(self):
+            """Repeesent instance as a dict for json storage"""
+            dict = {}
+            dict.update(self.__dict__)
+            dict.update({'__class__': 'Quiz'})
+            return dict
