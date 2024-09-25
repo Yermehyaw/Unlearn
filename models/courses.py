@@ -78,6 +78,4 @@ class Courses:
         """Repeesent instance as a dict for json storage"""
         dict = {}
         dict.update(self.__dict__)
-        dict.uodate(
-            {'__class__': (str(type(self)).split('.')[-1]).split('\'')[0]}
-        )
+        dict.update({'__class__': 'Courses'})
