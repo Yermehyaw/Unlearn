@@ -48,6 +48,11 @@ class UnlearnConsole(cmd.Cmd):
     console = Console(theme=unlearn_theme)
 
     def preloop(self):
+        """App load up"""
+        storage.reload()
+        do_home()
+
+    def do_home(self):
         """
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
@@ -59,45 +64,50 @@ class UnlearnConsole(cmd.Cmd):
         )
         unlearn_table.add_column("Unlearn")
         unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
+        unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)")
+        unlearn_table.add_row('#1 Biochemistry Quiz App')
         UnlearnConsole.console.print(unlearn_table)
 
-    def do_L(self):
+    def do_login(self, comd):
         """Logs in a user"""
 
-    def do_U(self):
+    def do_proceed(self, comd):
+        """Proceeds to finish login/user authentication"""
+
+    def do_signup(self, comd):
         """Signs up a new user"""
 
-    def do_take_quiz(self):
+    def do_finish(self, comd):
+        """Finish user sign uo/ create new student"""
+
+    def do_start(self, comd):
         """Creates a new quiz session"""
         do_lesson()
 
-        def do_previous(self):  # is athe do_prefix necessary?
-            """Navigate to previous question"""
+    def do_p(self, comd):  # is athe do_prefix necessary?
+        """Navigate to previous question"""
 
-        def do_next(self):
-            """Navigate to the next question"""
+    def do_n(self, comd):
+        """Navigate to the next question"""
 
-        def do_tip(self):
-            """Give user a tip on the question"""
+    def do_p(self, cond):
+        """Give user a tip on the question"""
 
-        def do_submit(self):
-            """Submit attempted questions"""
+    def do_submit(self, comd):
+        """Submit attempted questions"""
 
-    def do_lesson(self):
+    def do_lesson(self, comd):
         """mini-lesson before a quiz session"""
 
-        def do_back(self):
-            """Return back to home"""
+    def do_continue(self, comd):
+        """continue to quiz"""
 
-        def do_continue(self):
-            """continue to quiz"""
-
-    def do_quit(self, command):
+    def do_quit(self, comd):
         """Exits the app"""
         print()
         exit()
 
-    def do_EOF(self, command):
+    def do_EOF(self, comd):
         """Handles EIF input"""
         print()
         exit()
