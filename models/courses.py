@@ -79,3 +79,4 @@ class Courses:
         dict = {}
         dict.update(self.__dict__)
         dict.update({'__class__': 'Courses'})
+        return dict
