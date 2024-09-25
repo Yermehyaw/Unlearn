@@ -102,3 +102,10 @@ d wrongly
         """Returns percentage_score as a string with the % sign"""
         str_p_score = str(self._percentage_score) + '%'
         return str_p_score
+
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Result'})
+        return dict

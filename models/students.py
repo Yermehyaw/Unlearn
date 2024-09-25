@@ -52,3 +52,10 @@ class Students():
         self.p_hash = bcrypt.hashpw(password.encode('utf-8'), __salt)
 
         self.created_at = datetime.now()
+
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Students'})
+        return dict
