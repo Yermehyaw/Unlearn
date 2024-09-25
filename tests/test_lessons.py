@@ -54,7 +54,7 @@ class TestLessons(unittest.TestCase):
 
     def test_get_questions(self):
         """Test get_questions() method"""
-        new_lesson = Lessons(  # setUp() van be used
+        new_lesson = Lessons(  # setUp() can be used
             'learn carbohydrates',
             'this is how to easily learn carbohydrates',
             'helping students learn carbohydrates'
@@ -69,7 +69,7 @@ class TestLessons(unittest.TestCase):
 
     def test_result_gen(self):
         """Test result_gen method which calls marker()"""
-        new_lesson = Lessons(  # setUp() van be used
+        new_lesson = Lessons(  # setUp() can be used
             'learn carbohydrates',
             'this is how to easily learn carbohydrates',
             'helping students learn carbohydrates'
