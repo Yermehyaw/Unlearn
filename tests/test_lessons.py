@@ -92,11 +92,11 @@ class TestLessons(unittest.TestCase):
         # assert both are unequal after calling result_gen()
         self.assertNotEqual(quiz.questions, quiz.marked_questions)
 
-        q1.selected_option = q1.option_selection['True']
-        q1.correct_option = q1.option_selection['True']
+        q1.selected_option = q1.option_selection['T']
+        q1.correct_option = q1.option_selection['T']
 
-        q2.selected_option = q2.option_selection['True']
-        q2.correct_option = q1.option_selection['False']
+        q2.selected_option = q2.option_selection['T']
+        q2.correct_option = q1.option_selection['F']
         result = quiz.result_gen(gen_questions)  # gen a new result after attempting the questions
 
         self.assertEqual(result.score, 1)
