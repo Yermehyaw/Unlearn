@@ -75,7 +75,7 @@ class UnlearnConsole(cmd.Cmd):
         """Logs in a user"""
         # input validation code for later
         arg_fetch = [
-            inquirer.Text('username', message='Username:'),
+            inquirer.Text('username', message='Username'),
             inquirer.Text('password', message='Password')
         ]
         student_resp = inquirer.prompt(arg_fetch)
@@ -86,8 +86,8 @@ class UnlearnConsole(cmd.Cmd):
 
         # search for all Students obj in storage
         objs_in_storage = storage.load_all()
+        student_objs = []
         for key, value in objs_in_storage:
-            student_objs = []
             if (key.split('.'))[0] == 'Students':
                 student_objs.append(values)
 
