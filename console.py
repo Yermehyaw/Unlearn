@@ -85,27 +85,30 @@ class UnlearnConsole(cmd.Cmd):
             print('Empty username or password not allowed')
             return
 
-        # search for all Students obj in storage
-        objs_in_storage = storage.load_all()
-        student_objs = []
-        for key, value in objs_in_storage:
-            if (key.split('.'))[0] == 'Students':
-                student_objs.append(values)
+        with yaspin(text='Loading...', color='yellow') as spinner:  # loading animation
+            # search for all Students obj in storage
+            objs_in_storage = storage.load_all()
+            student_objs = []
+            for key, value in objs_in_storage:
+                if (key.split('.'))[0] == 'Students':
+                    student_objs.append(values)
 
-        if len(student_objs) == 0:
-            print('Incorrect login details entered')
-            return
+                    if len(student_objs) == 0:
+                        print('Incorrect login details entered')
+                        return
 
-        # Search for the spec student obj with tge same username
-        for student in student_objs:
-            if student.username == student_resp['username']:
-                self.found_student = student
-                print('Logged In Successfully!')
-                return
+                    # Search for the spec student obj with tge same username
+                    for student in student_objs:
+                        if student.username == student_resp['username']:
+                            self.found_student = student
+                            print('Logged In Successfully!')
+                            return
 
-        if not self.found_student:
-            print('Incorrect login details entered')
-            return
+                    if not self.found_student:
+                        print('Incorrect login details entered')
+                        return
+
+        spinner.ok("✔ Done!")
 
     def do_signup(self, comd):
         """Signs up a new user"""
