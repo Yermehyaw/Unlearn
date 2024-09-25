@@ -119,7 +119,6 @@ class Lessons:
             """
             self.student_id = student_id
             # in a loop append question obj from storage to self.questions list
-            # call save() (?)
             return self.questions
 
         def result_gen(self, user_attempts):
@@ -133,6 +132,5 @@ class Lessons:
 
             """
             self.marked_questions = marker(user_attempts)
-            # call save() (?)
             new_result = Result(self, self.student_id)
             return new_result
