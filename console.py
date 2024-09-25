@@ -67,7 +67,7 @@ class UnlearnConsole(cmd.Cmd):
         )
         self.unlearn_table.add_column("Unlearn")
         self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
-        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='bg')
+        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')
         self.unlearn_table.add_row('#1 Biochemistry Quiz App')
         UnlearnConsole.console.print(self.unlearn_table)
 
