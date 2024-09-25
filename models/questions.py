@@ -84,8 +84,8 @@ class Questions:
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
-                    'True': [True, 'option_' + str(uuid4().int)],
-                    'False': [False, 'option_' + str(uuid4().int)]
+                    'T': [True, 'option_' + str(uuid4().int)],
+                    'F': [False, 'option_' + str(uuid4().int)]
                 }
             elif option_type == 'mcq':
                 self.option_selection = {}
@@ -135,8 +135,8 @@ class Questions:
                 pretty_option = {
                     'option_type': 'True or False Question',
                     'options': [
-                        self.option_selection['True'],
-                        self.option_selection['False']
+                        self.option_selection['T'],
+                        self.option_selection['F']
                     ],
                     'correct_option': self.correct_option
                 }
@@ -194,8 +194,8 @@ class Questions:
             option_true = 'option_' + str(uuid4().int)
             option_false = 'option_' + str(uuid4().int)
             self.option_selection = {
-                'True': [True, option_true],
-                'False': [False, option_false]
+                'T': [True, option_true],
+                'F': [False, option_false]
             }
         elif option_type == 'mcq':
             # Same action will be performed on a t/f or mcq question in storage
@@ -227,7 +227,7 @@ class Questions:
                 pass
 
 
-    def useful_in(self, get_ids=True):
+    def useful_in(self, get_ids=Truen):
         """
         Get the list of topic ids or names in which the question can be used in
         """
