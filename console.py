@@ -57,16 +57,16 @@ class UnlearnConsole(cmd.Cmd):
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
         """
-        unlearn_table = Table(
+        self.unlearn_table = Table(
             title='Unlearn',
             style='black on grey66',
             header_style='white on dark_blue'
         )
-        unlearn_table.add_column("Unlearn")
-        unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
-        unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)")
-        unlearn_table.add_row('#1 Biochemistry Quiz App')
-        UnlearnConsole.console.print(unlearn_table)
+        self.unlearn_table.add_column("Unlearn")
+        self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
+        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='bg')
+        self unlearn_table.add_row('#1 Biochemistry Quiz App')
+        UnlearnConsole.console.print(self.unlearn_table)
 
     def do_login(self, comd):
         """Logs in a user"""
@@ -83,6 +83,28 @@ class UnlearnConsole(cmd.Cmd):
     def do_start(self, comd):
         """Creates a new quiz session"""
         self.do_lesson()
+        print('')
+
+    def do_A(self):
+        """Option A is chosen"""
+
+    def do_B(self):
+        """Option B is chosen"""
+
+    def do_C(self):
+        """Option C is chosen"""
+
+    def do_D(self):
+        """Option D is chosen"""
+
+    def do_E(self):
+        """Option E is chosen"""
+
+    def do_T(self):
+        """True is chosen"""
+
+    def do_F(self):
+        """False is chosen"""
 
     def do_p(self, comd):  # is athe do_prefix necessary?
         """Navigate to previous question"""
@@ -90,7 +112,7 @@ class UnlearnConsole(cmd.Cmd):
     def do_n(self, comd):
         """Navigate to the next question"""
 
-    def do_p(self, cond):
+    def do_i(self, cond):
         """Give user a tip on the question"""
 
     def do_submit(self, comd):
