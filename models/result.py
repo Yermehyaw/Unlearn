@@ -52,6 +52,16 @@ d wrongly
         questions = quiz_obj.marked_questions
         self.total_questions = len(questions)
 
+        for q in questions:
+            if q.status == 'correct':
+                self._score += 1
+                self.questions_answered_correct.append(q)
+            elif q.status == 'wrong':
+                self.questions_answered_wrong.append(q)
+            elif len(q.status) == 0:
+                self.questions_unattempted.append(q)
+
+
         if self.total_questions == 0:
             self._percentage_score = 0.00
         else:
@@ -62,15 +72,6 @@ d wrongly
             self.status = 'Passed'
         elif self._percentage_score <= 49:
             self.status = 'Failed'
-
-        for q in questions:
-            if q.status == 'correct':
-                self._score += 1
-                self.questions_answered_correct.append(q)
-            elif q.status == 'wrong':
-                self.questions_answered_wrong.append(q)
-            elif len(q.status) == 0:
-                self.questions_unattempted.append(q)
 
     @property
     def score(self):
