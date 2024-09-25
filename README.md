@@ -1,6 +1,7 @@
 # Unlearn
 
 Redefining the biochemical learning experience. . .
+![unlearn logo](https://)
 
 # Introduction
 ## Un. . . What?
@@ -28,7 +29,7 @@ Also allow the ssh client to install any additional prerequisite packages(if any
 I will be using the [console](#console) vs I will be using my [web browser](#web-browser)
 
 # Usage
-### WEB BROWSER
+### WEB BROWSER (Coming Soon . . .)
 Using the web app on your browseer is pretty straightforward!
 
 Visit [unlearn.com](www.contrite.unlearn.com) to get started.
@@ -36,10 +37,20 @@ Visit [unlearn.com](www.contrite.unlearn.com) to get started.
 Once youre on the web site, youll need to either create an account or log in, but if you dont have the time for such, you can always explore the app and take a quick quiz session or as I like to call it, a quick 'unlearn session'. Note that all progress made in such asession is unsaved and wont be recoverably when you use the app another time.
 
 ### CONSOLE
-To use the console, youll need to be able to communicate to the server via ssh. To do this, youll need a valid ssh key. To generate one, visit [here](www.contrite.unlearn.com/ssh). You can only create a maximum of **two** ssh keys per ip address.
+To use the console, you'll need to clone this repo into yoir terminal.
+After cloning it simply run tge following commabds:
+```cd Unlearn```
+```./console.py```
+and you're good to go!
 
-Next follow the prompt, copy the connection details shown, paste this in your client and youll set up and ready to begin.
-
+#### Command List
+**start**: Begin a quick quiz
+**login**: login to retrieve previous progress
+**signup**: new user signup
+**n**: next question on a quiz
+**p**: previous question on a quix
+**i**: tip on a question
+**submit**: submit quiz attempt
 For more indepth documentation/details, kindly visit the [wiki]()
 
 ### APIs
@@ -93,10 +104,11 @@ Fail: An empty dict
 
 # Contributing
 (@yermehyaw) Akor Jeremiah <omoakor@gmail.com>
-
+If you wist to collaborate on this project, kindly clone it and majevthe changes ad you deem fit.
+It is highly recommended you begin by improving/making changes to the api and then in later version the web app can be easily added to those endloints.
 
 # Related Projects
 
 
 # Licencing
-MIT licience
+MIT licence
