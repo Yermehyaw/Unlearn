@@ -73,3 +73,11 @@ class Courses:
         self._all_topics.append(new_topic.topic_title)
 
         return new_topic
+
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.uodate(
+            {'__class__': (str(type(self)).split('.')[-1]).split('\'')[0]}
+        )
