@@ -55,6 +55,12 @@ class UnlearnConsole(cmd.Cmd):
             'Unlearn', '', '', '', '',
             '', '', '', '#1 Biochemistry Quiz App'
         ]
+        self.unlearn_table = Table(
+            title='Unlearn',
+            style='black on grey66',
+            header_style='white on dark_blue'
+        )
+        self.unlearn_table.add_column("Unlearn", justify='center')
 
     def preloop(self):
         """App load up"""
@@ -69,12 +75,6 @@ class UnlearnConsole(cmd.Cmd):
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
         """
-        self.unlearn_table = Table(
-            title='Unlearn',
-            style='black on grey66',
-            header_style='white on dark_blue'
-        )
-        self.unlearn_table.add_column("Unlearn", justify='center')
         self.unlearn_table.add_row('')  # space between values in the table (1)
         self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
         self.unlearn_table.add_row('')  # space (2)
