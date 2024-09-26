@@ -71,12 +71,13 @@ class UnlearnConsole(cmd.Cmd):
             header_style='white on dark_blue'
         )
         self.unlearn_table.add_column("Unlearn", justify='center')
-        self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
         self.unlearn_table.add_row('')  # space between values in the table (1)
-        self.unlearn_table.add_row('')  # a row with no value
+        self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
         self.unlearn_table.add_row('')  # space (2)
-        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')
+        self.unlearn_table.add_row('')  # a row with no value
         self.unlearn_table.add_row('')  # space (3)
+        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')
+        self.unlearn_table.add_row('')  # space (4)
         self.unlearn_table.add_row('#1 Biochemistry Quiz App')
         UnlearnConsole.console.print(self.unlearn_table)
 
@@ -189,7 +190,7 @@ class UnlearnConsole(cmd.Cmd):
         exit()
 
     def update_table(self, ):
-        """Updates the 7x1 table"""
+        """Updates the 8x1 table"""
 
 if __name__ == '__main__':
     UnlearnConsole().cmdloop()
