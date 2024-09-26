@@ -76,13 +76,13 @@ class UnlearnConsole(cmd.Cmd):
         for the unlearn console app
         """
         self.unlearn_table.add_row('')  # space between values in the table (1)
-        self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')
-        self.unlearn_table.add_row('')  # space (2)
-        self.unlearn_table.add_row('')  # a row with no value
+        self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')  # (2)
         self.unlearn_table.add_row('')  # space (3)
-        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')
-        self.unlearn_table.add_row('')  # space (4)
-        self.unlearn_table.add_row('#1 Biochemistry Quiz App')
+        self.unlearn_table.add_row('')  # a row with no value (4)
+        self.unlearn_table.add_row('')  # space (5)
+        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')  # (6)
+        self.unlearn_table.add_row('')  # space (7)
+        self.unlearn_table.add_row('#1 Biochemistry Quiz App')  # (8)
         UnlearnConsole.console.print(self.unlearn_table)
 
     def do_login(self, comd):
