@@ -52,7 +52,7 @@ class UnlearnConsole(cmd.Cmd):
         super().__init__()  # retrieve necessary atrr from cmd.Cmd parent cls
         self.found_student = None  # just a placeholder
         self.base_table_list = [
-            'Unlearn', '', '', '', '',
+            '', '', '', '',
             '', '', '', '#1 Biochemistry Quiz App'
         ]
         self.unlearn_table = Table(
@@ -83,7 +83,13 @@ class UnlearnConsole(cmd.Cmd):
         self.unlearn_table.add_row('')  # space (3)
         self.unlearn_table.add_row('')  # a row with no value (4)
         self.unlearn_table.add_row('')  # space (5)
-        self.unlearn_table.add_row("Sign Up(signup)" + (' ' * 5) + "Log In(login)" + (' ' * 5) + "Take a Quiz Quiz(start)", style='info')  # (6)
+        self.unlearn_table.add_row(
+            "Sign Up(signup)"
+            + (' ' * 5)
+            + "Log In(login)"
+            + (' ' * 5)
+            + "Take a Quick Quiz(start)", style='info'
+        )  # (6)
         self.unlearn_table.add_row('')  # space (7)
         self.unlearn_table.add_row('#1 Biochemistry Quiz App')  # (8)
         UnlearnConsole.console.print(self.unlearn_table)
@@ -212,6 +218,19 @@ class UnlearnConsole(cmd.Cmd):
             raise ValueError('This row cannot be changed')
         # change the list which holds the table
         self.base_table_list[index] = row_entry
+
+    def update_table_rows(self):
+        """Use the modified base_table_list to add rows to unlearn_table"""
+        self.unlearn_table = Table(  # overwrite previous table with new one
+            title='Unlearn',
+            style='black on grey66',
+            header_style='white on dark_blue'
+        )
+        self.unlearn_table.add_column("Unlearn", justify='center')
+
+        for list_val in self.base_table_list:
+            self.unlearn_table.add_row
+
 
 if __name__ == '__main__':
     UnlearnConsole().cmdloop()
