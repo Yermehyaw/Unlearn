@@ -57,6 +57,13 @@ class Lessons:
             else:
                 self.lesson_desc = lesson_desc
 
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Lessons'})
+        return dict
+
 
     class Quiz:
         """
@@ -107,7 +114,7 @@ class Lessons:
 
             self.student_id = student_id
             self.questions = []
-            self.marked_questions = []
+            self.marked_questions = self.questions
 
         def get_questions(self, student_id=''):
             """
@@ -118,9 +125,7 @@ class Lessons:
 
             """
             self.student_id = student_id
-            self.questions = []
-            # in a loop append question obj from storage to the list
-            # call save() (?)
+            # in a loop append question obj from storage to self.questions list
             return self.questions
 
         def result_gen(self, user_attempts):
@@ -134,6 +139,12 @@ class Lessons:
 
             """
             self.marked_questions = marker(user_attempts)
-            # call save() (?)
             new_result = Result(self, self.student_id)
             return new_result
+
+        def to_dict(self):
+            """Repeesent instance as a dict for json storage"""
+            dict = {}
+            dict.update(self.__dict__)
+            dict.update({'__class__': 'Quiz'})
+            return dict

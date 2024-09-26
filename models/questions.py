@@ -84,8 +84,8 @@ class Questions:
         else:  # options arg not entered
             if option_type == 't/f':
                 self.option_selection = {
-                    'True': [True, 'option_' + str(uuid4().int)],
-                    'False': [False, 'option_' + str(uuid4().int)]
+                    'T': [True, 'option_' + str(uuid4().int)],
+                    'F': [False, 'option_' + str(uuid4().int)]
                 }
             elif option_type == 'mcq':
                 self.option_selection = {}
@@ -135,8 +135,8 @@ class Questions:
                 pretty_option = {
                     'option_type': 'True or False Question',
                     'options': [
-                        self.option_selection['True'],
-                        self.option_selection['False']
+                        self.option_selection['T'],
+                        self.option_selection['F']
                     ],
                     'correct_option': self.correct_option
                 }
@@ -194,8 +194,8 @@ class Questions:
             option_true = 'option_' + str(uuid4().int)
             option_false = 'option_' + str(uuid4().int)
             self.option_selection = {
-                'True': [True, option_true],
-                'False': [False, option_false]
+                'T': [True, option_true],
+                'F': [False, option_false]
             }
         elif option_type == 'mcq':
             # Same action will be performed on a t/f or mcq question in storage
@@ -257,12 +257,10 @@ class Questions:
         if topic_name not in self._useful_in_topic_name:
             self._useful_in_topic_name.append(topic_name)
 
-    def reload(self):
-        """Reload question obj attributes from storage"""
-        # reload _useful_in_topic_name
-        # reload _useful_in_topic_id
-        pass  # remove when method is defined
 
-    def save(self):
-        """Save object to storage"""
-            # Coming soon. . .
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Questions'})
+        return dict

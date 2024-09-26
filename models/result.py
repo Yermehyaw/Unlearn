@@ -52,17 +52,6 @@ d wrongly
         questions = quiz_obj.marked_questions
         self.total_questions = len(questions)
 
-        if self.total_questions == 0:
-            self._percentage_score = 0.00
-        else:
-            float_score = float(self._score) / self.total_questions * 100
-            self._percentage_score = round(float_score, 2)
-
-        if self._percentage_score >= 50:
-            self.status = 'Passed'
-        elif self._percentage_score <= 49:
-            self.status = 'Failed'
-
         for q in questions:
             if q.status == 'correct':
                 self._score += 1
@@ -71,6 +60,18 @@ d wrongly
                 self.questions_answered_wrong.append(q)
             elif len(q.status) == 0:
                 self.questions_unattempted.append(q)
+
+
+        if self.total_questions == 0:
+            self._percentage_score = 0.00
+        else:
+            float_score = (float(self._score) / self.total_questions) * 100
+            self._percentage_score = round(float_score, 1)
+
+        if self._percentage_score >= 50:
+            self.status = 'Passed'
+        elif self._percentage_score <= 49:
+            self.status = 'Failed'
 
     @property
     def score(self):
@@ -88,8 +89,8 @@ d wrongly
         if self.total_questions == 0:
             self._percentage_score = 0.00
         else:
-            float_score = float(self._score) / self.total_questions * 100
-            self._percentage_score = round(float_score, 2)
+            float_score = (float(self._score) / self.total_questions) * 100
+            self._percentage_score = round(float_score, 1)
 
         if self._percentage_score >= 50:
             self.status = 'Passed'
@@ -101,3 +102,10 @@ d wrongly
         """Returns percentage_score as a string with the % sign"""
         str_p_score = str(self._percentage_score) + '%'
         return str_p_score
+
+    def to_dict(self):
+        """Repeesent instance as a dict for json storage"""
+        dict = {}
+        dict.update(self.__dict__)
+        dict.update({'__class__': 'Result'})
+        return dict
