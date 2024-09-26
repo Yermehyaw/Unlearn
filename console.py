@@ -46,6 +46,7 @@ class UnlearnConsole(cmd.Cmd):
         }
     )
     console = Console(theme=unlearn_theme)
+    self.found_student = None  # just a placeholder
 
     def preloop(self):
         """App load up"""
@@ -81,7 +82,6 @@ class UnlearnConsole(cmd.Cmd):
             inquirer.Text('password', message='Password')
         ]
         student_resp = inquirer.prompt(arg_fetch)
-        self.found_student = None  # just a placeholder
 
         if not student_resp['username'] or not student_resp['password']:
             print('Empty username or password not allowed')
