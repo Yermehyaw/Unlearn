@@ -35,18 +35,20 @@ class UnlearnConsole(cmd.Cmd):
     Unlearn console interface
 
     """
-    if sys.__stdin__.isatty():
-        prompt = '(unlearn) '
+    def __init__(self):
+        """initializer to ensure shared attrs amongst methods"""
+        if sys.__stdin__.isatty():
+            prompt = '(unlearn) '
 
-    unlearn_theme = Theme(
-        {
-            "info": "bold cyan", "text": "bright_blue",
-            "bg": "thistle1",  "warning": "magenta",
-            "danger": "bold red"
-        }
-    )
-    console = Console(theme=unlearn_theme)
-    self.found_student = None  # just a placeholder
+            unlearn_theme = Theme(
+                {
+                    "info": "bold cyan", "text": "bright_blue",
+                    "bg": "thistle1",  "warning": "magenta",
+                    "danger": "bold red"
+                }
+            )
+            console = Console(theme=unlearn_theme)
+            self.found_student = None  # just a placeholder
 
     def preloop(self):
         """App load up"""
