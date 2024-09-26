@@ -49,7 +49,7 @@ class UnlearnConsole(cmd.Cmd):
 
     def __init__(self):
         """initializer to ensure some attrs are shared amongst methods"""
-            self.found_student = None  # just a placeholder
+        self.found_student = None  # just a placeholder
 
     def preloop(self):
         """App load up"""
