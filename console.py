@@ -166,11 +166,19 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_quit(self, comd):
         """Exits the app"""
+        if self.found_student:
+            print(f'Goodbye unlearner {self.found_student.usernane}')
+        else:
+            print('Goodbye unlearner')
         print()
         exit()
 
     def do_EOF(self, comd):
         """Handles EIF input"""
+        if self.found_student:
+            print(f'Goodbye unlearner {self.found_student.usernane}')
+        else:
+            print('Goodbye unlearner')
         print()
         exit()
 
