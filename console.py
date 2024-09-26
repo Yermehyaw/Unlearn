@@ -51,6 +51,10 @@ class UnlearnConsole(cmd.Cmd):
         """initializer to ensure some attrs are shared amongst methods"""
         super().__init__()  # retrieve necessary atrr from cmd.Cmd parent cls
         self.found_student = None  # just a placeholder
+        self.base_table_rows = [
+            'Unlearn', '', '', '', '',
+            '', '', '', '#1 Biochemistry Quiz App'
+        ]
 
     def preloop(self):
         """App load up"""
@@ -189,8 +193,21 @@ class UnlearnConsole(cmd.Cmd):
         print()
         exit()
 
-    def update_table(self, ):
-        """Updates the 8x1 table"""
+    def update_table(self, index, row_entry):
+        """Updates the 8x1 table
+
+        Args:
+        index(int): index of the row in unlearn_table to be changed
+        row_entry(str): new value of the row
+
+        Description: index 1, 3, 5 and 7 are invalid and are for whitespaces
+        to space out values in the table
+        """
+        invalid = [1, 3, 5, 7]
+        if index in invalid:
+            raise ValueError('This row cannot be changed')
+        # change the list which holds the table
+        self.base_table_rows[index] = row_entry
 
 if __name__ == '__main__':
     UnlearnConsole().cmdloop()
