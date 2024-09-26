@@ -51,7 +51,7 @@ class UnlearnConsole(cmd.Cmd):
         """initializer to ensure some attrs are shared amongst methods"""
         super().__init__()  # retrieve necessary atrr from cmd.Cmd parent cls
         self.found_student = None  # just a placeholder
-        self.base_table_rows = [
+        self.base_table_list = [
             'Unlearn', '', '', '', '',
             '', '', '', '#1 Biochemistry Quiz App'
         ]
@@ -74,6 +74,9 @@ class UnlearnConsole(cmd.Cmd):
         """
         Comprise a dynamic table of chsnging values as interface
         for the unlearn console app
+
+        INFO:
+        update_table() isnt used here due to color preferences using the style param 
         """
         self.unlearn_table.add_row('')  # space between values in the table (1)
         self.unlearn_table.add_row("Stop Learning Biochemistry the Wrong Way!", style='text')  # (2)
@@ -193,8 +196,9 @@ class UnlearnConsole(cmd.Cmd):
         print()
         exit()
 
-    def update_table(self, index, row_entry):
-        """Updates the 8x1 table
+    def update_table_list(self, index, row_entry):
+        """
+        Updates the list used to update the rows of 8x1 unlearn_table
 
         Args:
         index(int): index of the row in unlearn_table to be changed
@@ -207,7 +211,7 @@ class UnlearnConsole(cmd.Cmd):
         if index in invalid:
             raise ValueError('This row cannot be changed')
         # change the list which holds the table
-        self.base_table_rows[index] = row_entry
+        self.base_table_list[index] = row_entry
 
 if __name__ == '__main__':
     UnlearnConsole().cmdloop()
