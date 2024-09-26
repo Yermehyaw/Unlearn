@@ -49,6 +49,7 @@ class UnlearnConsole(cmd.Cmd):
 
     def __init__(self):
         """initializer to ensure some attrs are shared amongst methods"""
+        super().__init__()  # retrieve necessary atrr from cmd.Cmd parent cls
         self.found_student = None  # just a placeholder
 
     def preloop(self):
