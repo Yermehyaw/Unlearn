@@ -183,10 +183,10 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_start(self, comd):
         """Creates a new quiz session
-        
+
         Note:
-        In future iterations, the user will be able to choose what course
-        he/she wishes to be quizzed on. For now, only one course exists i.e BCH210
+        In future iterations, the user will be able to choose what course he/she
+        wishes to be quizzed on. For now, only one course exists i.e BCH210
         """
         if not self.course_created:  # activate this to True when bch210 is created
             create_bch210()
@@ -236,7 +236,7 @@ class UnlearnConsole(cmd.Cmd):
         except (TypeError, ValueError):
             print('Course couldnt be accessed')
             return
-        
+
         # Create a topic in the course
         try:
             bch210_carbohydrates = Topics(
@@ -247,7 +247,29 @@ class UnlearnConsole(cmd.Cmd):
 
         # Create its questions
         try:
-            bch210_questions = Questions() 
+            bch210_q1 = Questions(
+                '___ are the precursors of virtually all other biomolecules',
+                'mcq',
+                options=['proteins', 'enzymes', 'hydrocarbons', 'carbohydrates', 'lipids'],
+                tip='It is the "skeleton" of lipids'
+            )
+            bch210_q1.correct_option
+            bch210_q2 = Questions(
+                'The characteristic chemical feature of carbohydrates includes all of the following except?',
+                'mcq',
+                options=[
+                    ''
+                ],
+                tip='It is only'
+            )
+            bch210_q3 = Questions('', 'mcq')
+            bch210_q4 = Questions('', 'mcq')
+            bch210_q5 = Questions('', 'mcq')
+            bch210_q6 = Questions('', 'mcq')
+            bch210_q7 = Questions('', 'mcq')
+            bch210_q8 = Questions('', 'mcq')
+            bch210_q9 = Questions('', 'mcq')
+            bch210_q10 = Questions('', 'mcq')
         self.course_created = True
 
     def lesson(self, comd):
