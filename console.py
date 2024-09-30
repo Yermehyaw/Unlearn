@@ -186,8 +186,10 @@ class UnlearnConsole(cmd.Cmd):
         
         Note:
         In future iterations, the user will be able to choose what course
-        he/she wishes to be quizzed on
+        he/she wishes to be quizzed on. For now, only one course exists i.e BCH210
         """
+        if not self.course_created:  # activate this to True when bch210 is created
+            create_bch210()
         self.lesson()
         print('')
 
@@ -223,6 +225,30 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_submit(self, comd):
         """Submit attempted questions"""
+
+    def create_bch210(self):
+        """Create bch 210
+        A separate py file will be created in future iterations for course creation
+        """
+        # Create the course obj
+        try:
+            bch210 = Courses(210, 'Introductory Biochemistry I', 'Introduction to the rudiments of biochemistry for 100l students')
+        except (TypeError, ValueError):
+            print('Course couldnt be accessed')
+            return
+        
+        # Create a topic in the course
+        try:
+            bch210_carbohydrates = Topics(
+                'carbohydrates',
+                bch210.course_code,
+                ''
+            )
+
+        # Create its questions
+        try:
+            bch210_questions = Questions() 
+        self.course_created = True
 
     def lesson(self, comd):
         """mini-lesson before a quiz session"""
