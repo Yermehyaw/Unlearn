@@ -155,7 +155,7 @@ class UnlearnConsole(cmd.Cmd):
             return
 
         # Retrieve all available obj from storage
-        objs_in_storage = stoarge.load_all()
+        objs_in_storage = storage.load_all()
 
         # Retrieve only Students() objs from retrieved objs
         student_objs = []
@@ -172,13 +172,13 @@ class UnlearnConsole(cmd.Cmd):
         # If it passes the check, create a new user/student
         try:
             new_student = Students(input_username, input_passwd, input_name)
-            stoarge.add(new_student)
+            storage.add(new_student)
         except (TypeError, ValueError):
             print('Incorrect signup details entered')
             return
 
         # save newly created obj to storage
-        stoarge.add(new_student)
+        storage.add(new_student)
         storage.save()
 
     def do_start(self, comd):
@@ -189,7 +189,7 @@ class UnlearnConsole(cmd.Cmd):
         wishes to be quizzed on. For now, only one course exists i.e BCH210
         """
         if not self.course_created:  # activate this to True when bch210 is created
-            create_bch210()
+            self.create_bch210()
         self.lesson()
         print('')
 
@@ -236,6 +236,7 @@ class UnlearnConsole(cmd.Cmd):
         except (TypeError, ValueError):
             print('Course couldnt be accessed')
             return
+        storage.save(bch210)  # save to storage
 
         # Create a topic in the course
         try:
@@ -244,6 +245,10 @@ class UnlearnConsole(cmd.Cmd):
                 bch210.course_code,
                 ''
             )
+        except (TypeError, ValueError):
+            print('Topic couldnt be accessed')
+            return
+        storage.save(bch210_carbohydrates)
 
         # Create its questions
         try:
@@ -253,23 +258,127 @@ class UnlearnConsole(cmd.Cmd):
                 options=['proteins', 'enzymes', 'hydrocarbons', 'carbohydrates', 'lipids'],
                 tip='It is the "skeleton" of lipids'
             )
-            bch210_q1.correct_option
+            bch210_q1.correct_option.append('carbohydrates')
+
             bch210_q2 = Questions(
                 'The characteristic chemical feature of carbohydrates includes all of the following except?',
                 'mcq',
                 options=[
-                    ''
+                    'The existence of at least one asymmetruc centers',
+                    'The ability to exist in ring or linear structure',
+                    'The capacity to form polymeric form by glycosidic bond',
+                    'The inability to form multiple hydrogen bonds with water',
+                    'The ability to form multiple hydrogen boonds with water'
                 ],
-                tip='It is only'
+                tip='For a substance to form hydrigen bonds, it must exhibit some measure of polarity or contain an OH group'
             )
-            bch210_q3 = Questions('', 'mcq')
-            bch210_q4 = Questions('', 'mcq')
-            bch210_q5 = Questions('', 'mcq')
-            bch210_q6 = Questions('', 'mcq')
-            bch210_q7 = Questions('', 'mcq')
-            bch210_q8 = Questions('', 'mcq')
-            bch210_q9 = Questions('', 'mcq')
-            bch210_q10 = Questions('', 'mcq')
+            bch210_q2.correct_option.append('The inability to form multiple hydrogen boonds with water')
+
+            bch210_q3 = Questions(
+                'A generic name is important in describing monosaccharides because ____',
+                'mcq',
+                [
+                    'It tells us both the important functional groups and the total number of asymmetric centers',
+                    'It tells us both the important functional groups and the total number of hydroxyl atoms',
+                    'It tells us both the total no of carbon atoms and the important functional groups',
+                    'All of the above',
+                    'None of the above'
+                ],
+                'The major differntiator between two or more generic names are based on differences on a shared characteristic'
+            )
+            bch210_q3.correct_option.append('It tells us both the total no of carbon atoms and the important functional groups')
+
+            bch210_q4 = Questions(
+                'Ketopeptones include',
+                'mcq',
+                [
+                    'Psicose',
+                    'Fructose',
+                    'Sorbose',
+                    'Ribulose',
+                    'Xylulose'
+                ],
+                'Keto sugars have more than an -ose appeneded to their names'
+            )
+            bch210_q4.correct_option.append('Ribulose')
+
+            bch210_q5 = Questions(
+                'Which of the following statement about mutarotation is NOT correct?',
+                'mcq',
+                [
+                    'Spontaneous change in the optical rotation of sugars',
+                    'Interconversion of the alpha and beta forms of the monosaccharide',
+                    'alpha D-glucose has a specific optical rotation of 112°',
+                    'beta D-glucose has a specific optical rotation of 18.7°',
+                    'None of the above'
+                ],
+                'Mutarotation pertains to optical property alone'
+            )
+            bch210_q5.correct_option.append('Interconversion of the alpha and beta forms of the monosaccharide')
+
+            bch210_q6 = Questions(
+                'Glucose reacts with alkaline CuSO4 to form red cuprois oxide ppt and ____',
+                'mcq',
+                [
+                    'Gluconic acid',
+                    'Glucoronic acid',
+                    'Glucaric acid',
+                    'L-Iduronic acid'
+                ],
+                'The stronger the O.A reacting with glucose, the more the name of the resulting acid departs from the original "glucose"'
+            )
+            bch210_q6.correct_option.append('Gluconic acid')
+
+            bch210_q7 = Questions(
+                'Monosaccharides can be oxidized enzymatically at carbon 6 yielding ____',
+                'mcq',
+                [
+                    'Uronic acid e.g D-glucoronic acid',
+                    'Aldonic acid e.g gluconic acid',
+                    'Aldaric acid e.g glucaric acid',
+                    'All of the above',
+                    'None of the above'
+                ],
+                'All ald -acids are formed by oxidizing the carbon with tge functional group'
+            )
+            bch210_q7.correct_option.append('Uronic acid e.g D-glucoronic acid')
+
+            bch210_q8 = Questions(
+                'Galactose is a C2 epimer of glucose',
+                't/f',
+                tip='Mannose comes before Galactose'
+            )
+            bch210_q8.correct_option.append('False')
+
+            bch210_q9 = Questions(
+                'The important constituent of the vitreous humor of the eye and synovial fluid is hyaluronic acid',
+                't/f',
+                tip='hylarunoic is derived from the greek work hyla which means "glass" or "glass-like"'
+            )
+            bch210_q9.correct_option.append('True')
+
+            bch210_q10 = Questions(
+                'Cellobiose is a non reducing sugar',
+                't/f',
+                tip='Non reducing sugars are commonly NOT derivates of highrt polysaccharides and are mostly disaccharides'
+            )
+            bch210_q10.correct_option.append('False')
+
+        except (TypeError, ValueError):
+            print('Course couldnt be accessed')
+            return
+        # save all questions to storage
+        storage.save(bch210_q1)
+        storage.save(bch210_q2)
+        storage.save(bch210_q3)
+        storage.save(bch210_q4)
+        storage.save(bch210_q5)
+        storage.save(bch210_q6)
+        storage.save(bch210_q7)
+        storage.save(bch210_q8)
+        storage.save(bch210_q9)
+        storage.save(bch210_q10)
+
         self.course_created = True
 
     def lesson(self, comd):
@@ -288,7 +397,7 @@ class UnlearnConsole(cmd.Cmd):
         exit()
 
     def do_EOF(self, comd):
-        """Handles EIF input"""
+        """Handles EOF input"""
         if self.found_student:
             print(f'Goodbye unlearner {self.found_student.usernane}')
         else:
