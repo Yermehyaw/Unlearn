@@ -30,7 +30,8 @@ class Topics():
     Attributes:
     topic_id(str): unique id of a topic
     lessons(list): list of all lessons the topic comprises
-    course_code(int): unique course code
+    course_code(int): unique course code. The course obj can just be passed
+    in future iterations of the app
     topic_title(str): title of the topic
     course_title(str): name/title of course
     course_desc(str): course details
