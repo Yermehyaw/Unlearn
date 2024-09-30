@@ -182,7 +182,12 @@ class UnlearnConsole(cmd.Cmd):
         storage.save()
 
     def do_start(self, comd):
-        """Creates a new quiz session"""
+        """Creates a new quiz session
+        
+        Note:
+        In future iterations, the user will be able to choose what course
+        he/she wishes to be quizzed on
+        """
         self.lesson()
         print('')
 
