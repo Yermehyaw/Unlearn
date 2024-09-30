@@ -49,7 +49,7 @@ class UnlearnConsole(cmd.Cmd):
 
     def __init__(self):
         """initializer to ensure some attrs are shared amongst methods"""
-        super().__init__()  # retrieve necessary atrr from cmd.Cmd parent cls
+        super().__init__()  # retrieve necessary atrr from cmd.Cmd i.e parent cls
         self.found_student = None  # just a placeholder
         self.base_table_list = [
             '', '', '', '',
@@ -67,7 +67,7 @@ class UnlearnConsole(cmd.Cmd):
         f = Figlet(font='slant')
         print(f.renderText('Unlearn'))
         print('Redefining the biochemical experience. . ..' + '\n\n')
-        storage.reload()
+        storage.reload()  # recreates all previously stored objs in storage
         self.do_home()
 
     def do_home(self):
@@ -111,7 +111,7 @@ class UnlearnConsole(cmd.Cmd):
             # search for all Students obj in storage
             objs_in_storage = storage.load_all()
             student_objs = []
-            for key, value in objs_in_storage:
+            for key, value in objs_in_storage.items():
                 if (key.split('.'))[0] == 'Students':
                     student_objs.append(values)
 
@@ -134,11 +134,52 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_signup(self, comd):
         """Signs up a new user"""
-        # Search for any existig student with the sane username
+        # Receive user inputs
+        arg_fetch = [  # although a name arg isnt required to create a Students() obj, I just decided to stick to the norm and ask for name.
+            inquirer.Text('name', message='Name'),
+            inquirer.Text('username', message='Username'),
+            inquirer.Text('password', message='Password')
+        ]
+        student_resp = inquirer.prompt(arg_fetch)
+
+        input_username = student_resp['username']
+        input_passwd = student_resp['password']
+        input_name = student_resp['name']
+
+         if not input_username or not input_passwd:
+            print('Username and Password are required')
+            return
+
+         if not input_name:
+            print('Name is required')
+            return
+
+        # Retrieve all available obj from storage
+        objs_in_storage = stoarge.load_all()
+
+        # Retrieve only Students() objs from retrieved objs
+        student_objs = []
+        for key, obj in objs_in_storage.items():
+            if (key.split('.'))[0] == 'Students':
+                student_objs.append(obj)
+
+        # Search for any existing student with the same username
         for student in student_objs:
             if student.username == student_resp['username']:
                 print('User exists already')
                 return
+
+        # If it passes the check, create a new user/student
+        try:
+            new_student = Students(input_username, input_passwd, input_name)
+            stoarge.add(new_student)
+        except (TypeError, ValueError):
+            print('Incorrect signup details entered')
+            return
+
+        # save newly created obj to storage
+        stoarge.add(new_student)
+        storage.save()
 
     def do_start(self, comd):
         """Creates a new quiz session"""
