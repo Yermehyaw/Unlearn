@@ -50,7 +50,7 @@ class UnlearnConsole(cmd.Cmd):
     def __init__(self):
         """initializer to ensure some attrs are shared amongst methods"""
         super().__init__()  # retrieve necessary atrr from cmd.Cmd i.e parent cls
-        self.found_student = None  # just a placeholder
+        self.student_found = None  # just a placeholder
         self.base_table_list = [
             '', '', '', '',
             '', '', '', '#1 Biochemistry Quiz App'
@@ -122,11 +122,11 @@ class UnlearnConsole(cmd.Cmd):
             # Search for the spec student obj with tge same username
             for student in student_objs:
                 if student.username == student_resp['username']:
-                    self.found_student = student
+                    self.student_found = student
                     print('Logged In Successfully!')
                     return
 
-            if not self.found_student:
+            if not self.student_found:
                 print('Incorrect login details entered')
                 return
 
@@ -171,14 +171,14 @@ class UnlearnConsole(cmd.Cmd):
 
         # If it passes the check, create a new user/student
         try:
-            new_student = Students(input_username, input_passwd, input_name)
-            storage.add(new_student)
+           self.student_new = Students(input_username, input_passwd, input_name)
+            storage.add(student_new)
         except (TypeError, ValueError):
             print('Incorrect signup details entered')
             return
 
         # save newly created obj to storage
-        storage.add(new_student)
+        storage.add(student_new)
         storage.save()
 
     def do_start(self, comd):
@@ -190,6 +190,9 @@ class UnlearnConsole(cmd.Cmd):
         """
         if not self.course_created:  # activate this to True when bch210 is created
             self.create_bch210()
+        print('Beginning lesson on carbohydrate')
+        intro_carbohydrates = Lessons()
+        self.quiz_session = intro_carbohydrates.Quiz()
         self.lesson()
         print('')
 
@@ -389,8 +392,8 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_quit(self, comd):
         """Exits the app"""
-        if self.found_student:
-            print(f'Goodbye unlearner {self.found_student.usernane}')
+        if self.student_found:
+            print(f'Goodbye unlearner {self.student_found.usernane}')
         else:
             print('Goodbye unlearner')
         print()
@@ -398,8 +401,8 @@ class UnlearnConsole(cmd.Cmd):
 
     def do_EOF(self, comd):
         """Handles EOF input"""
-        if self.found_student:
-            print(f'Goodbye unlearner {self.found_student.usernane}')
+        if self.student_found:
+            print(f'Goodbye unlearner {self.student_found.usernane}')
         else:
             print('Goodbye unlearner')
         print()
