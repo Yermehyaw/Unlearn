@@ -192,12 +192,21 @@ class UnlearnConsole(cmd.Cmd):
             self.create_bch210()
         print('Beginning lesson on carbohydrates')
         print('')
-        self.lesson('carbohydrates')  # this is where the appr lessonon the topic which the student has selected will be called
+        self.lesson('bch210_intro_carbohydrates')  # this is where the appr lessonon the topic which the student has selected will be called
         try:
             self.quiz_session = self.intro_carbohydrates.Quiz()  # only intro to carb lesson is available
         except (TypeError, ValueError):
             print('Quiz could not be accessed. Please try again later')
             return
+        self.objs_in_storage = storage.load_all()
+
+        # Retrieve all question objs whose useful_in list attr has the desired topic name
+        self.topic_question_objs = []
+        for key, obj in objs_in_storage.items():
+            if (key.split('.'))[0] == 'Questions':
+                if 'bch210_carbohydrates' in obj.useful_in(False):  # believe me I knw: who passes False as an arg???
+                    # just pls check models/questions.py and youll understand
+                    self.topic_question_objs.append(obj)
 
     def do_A(self):
         """Option A is chosen"""
@@ -247,7 +256,7 @@ class UnlearnConsole(cmd.Cmd):
         # Create a topic in the course
         try:
             bch210_carbohydrates = Topics(
-                'carbohydrates',
+                'bch210_carbohydrates',
                 bch210.course_code,
                 ''
             )
@@ -399,9 +408,9 @@ class UnlearnConsole(cmd.Cmd):
 
     def lesson(self, topic_name):
         """mini-lesson before a quiz session"""
-        if topic_name == 'carbohydrates':
+        if topic_name == 'bch210_intro_carbohydrates':
             try:
-                self.intro_carbohydrates = Lessons(
+                self.bch210_intro_carbohydrates = Lessons(
                     'Introduction to carbohydrates',
                     'Carbohydrates are vital organic compounds classified into three main types: monosaccharides, disaccharides, and polysaccharides. Monosaccharides, such as glucose and fructose, are simple sugars that serve as energy sources. Disaccharides, like sucrose and lactose, consist of two monosaccharides linked together. Polysaccharides, including starch, glycogen, and cellulose, are complex carbohydrates made of long chains of monosaccharides. They play crucial roles in energy storage, structural support, and cellular functions in living organisms.',
                     'Informs the student on only the types of carbohydrates without listing key characteristics of each nor their uses'
