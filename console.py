@@ -265,6 +265,7 @@ class UnlearnConsole(cmd.Cmd):
                 tip='It is the "skeleton" of lipids'
             )
             bch210_q1.correct_option.append('carbohydrates')
+            bch210_q1.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q2 = Questions(
                 'The characteristic chemical feature of carbohydrates includes all of the following except?',
@@ -279,6 +280,7 @@ class UnlearnConsole(cmd.Cmd):
                 tip='For a substance to form hydrigen bonds, it must exhibit some measure of polarity or contain an OH group'
             )
             bch210_q2.correct_option.append('The inability to form multiple hydrogen boonds with water')
+            bch210_q2.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q3 = Questions(
                 'A generic name is important in describing monosaccharides because ____',
@@ -293,6 +295,7 @@ class UnlearnConsole(cmd.Cmd):
                 'The major differntiator between two or more generic names are based on differences on a shared characteristic'
             )
             bch210_q3.correct_option.append('It tells us both the total no of carbon atoms and the important functional groups')
+            bch210_q3.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q4 = Questions(
                 'Ketopeptones include',
@@ -307,6 +310,7 @@ class UnlearnConsole(cmd.Cmd):
                 'Keto sugars have more than an -ose appeneded to their names'
             )
             bch210_q4.correct_option.append('Ribulose')
+            bch210_q4.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q5 = Questions(
                 'Which of the following statement about mutarotation is NOT correct?',
@@ -321,6 +325,7 @@ class UnlearnConsole(cmd.Cmd):
                 'Mutarotation pertains to optical property alone'
             )
             bch210_q5.correct_option.append('Interconversion of the alpha and beta forms of the monosaccharide')
+            bch210_q5.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q6 = Questions(
                 'Glucose reacts with alkaline CuSO4 to form red cuprois oxide ppt and ____',
@@ -334,6 +339,7 @@ class UnlearnConsole(cmd.Cmd):
                 'The stronger the O.A reacting with glucose, the more the name of the resulting acid departs from the original "glucose"'
             )
             bch210_q6.correct_option.append('Gluconic acid')
+            bch210_q6.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q7 = Questions(
                 'Monosaccharides can be oxidized enzymatically at carbon 6 yielding ____',
@@ -348,6 +354,7 @@ class UnlearnConsole(cmd.Cmd):
                 'All ald -acids are formed by oxidizing the carbon with tge functional group'
             )
             bch210_q7.correct_option.append('Uronic acid e.g D-glucoronic acid')
+            bch210_q7.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q8 = Questions(
                 'Galactose is a C2 epimer of glucose',
@@ -355,6 +362,7 @@ class UnlearnConsole(cmd.Cmd):
                 tip='Mannose comes before Galactose'
             )
             bch210_q8.correct_option.append('False')
+            bch210_q8.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q9 = Questions(
                 'The important constituent of the vitreous humor of the eye and synovial fluid is hyaluronic acid',
@@ -362,6 +370,7 @@ class UnlearnConsole(cmd.Cmd):
                 tip='hylarunoic is derived from the greek work hyla which means "glass" or "glass-like"'
             )
             bch210_q9.correct_option.append('True')
+            bch210_q9.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
             bch210_q10 = Questions(
                 'Cellobiose is a non reducing sugar',
@@ -369,6 +378,7 @@ class UnlearnConsole(cmd.Cmd):
                 tip='Non reducing sugars are commonly NOT derivates of highrt polysaccharides and are mostly disaccharides'
             )
             bch210_q10.correct_option.append('False')
+            bch210_q10.add_useful_in_topic(bch210_carbohydrates.topic_id, bch210_carbohydrates.topic_name)
 
         except (TypeError, ValueError):
             print('Course couldnt be accessed')
