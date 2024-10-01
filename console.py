@@ -190,11 +190,14 @@ class UnlearnConsole(cmd.Cmd):
         """
         if not self.course_created:  # activate this to True when bch210 is created
             self.create_bch210()
-        print('Beginning lesson on carbohydrate')
-        intro_carbohydrates = Lessons()
-        self.quiz_session = intro_carbohydrates.Quiz()
-        self.lesson()
+        print('Beginning lesson on carbohydrates')
         print('')
+        self.lesson('carbohydrates')  # this is where the appr lessonon the topic which the student has selected will be called
+        try:
+            self.quiz_session = self.intro_carbohydrates.Quiz()  # only intro to carb lesson is available
+        except (TypeError, ValueError):
+            print('Quiz could not be accessed. Please try again later')
+            return
 
     def do_A(self):
         """Option A is chosen"""
@@ -384,8 +387,18 @@ class UnlearnConsole(cmd.Cmd):
 
         self.course_created = True
 
-    def lesson(self, comd):
+    def lesson(self, topic_name):
         """mini-lesson before a quiz session"""
+        if topic_name == 'carbohydrates':
+            try:
+                self.intro_carbohydrates = Lessons(
+                    'Introduction to carbohydrates',
+                    'Carbohydrates are vital organic compounds classified into three main types: monosaccharides, disaccharides, and polysaccharides. Monosaccharides, such as glucose and fructose, are simple sugars that serve as energy sources. Disaccharides, like sucrose and lactose, consist of two monosaccharides linked together. Polysaccharides, including starch, glycogen, and cellulose, are complex carbohydrates made of long chains of monosaccharides. They play crucial roles in energy storage, structural support, and cellular functions in living organisms.',
+                    'Informs the student on only the types of carbohydrates without listing key characteristics of each nor their uses'
+                )
+            except (TypeError, ValueError):
+                print('Lesson to be quizzed on cannot be accessed')
+                return
 
     def do_continue(self, comd):
         """continue to quiz"""
